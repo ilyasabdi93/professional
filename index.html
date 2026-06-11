@@ -115,19 +115,9 @@
             }
         }
 
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
-        }
-
-        @keyframes orbit {
-            0% { transform: rotate(0deg) translateX(120px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
         }
 
         .animate-fade-in-up {
@@ -1091,7 +1081,7 @@
                 <h2>Let's Work Together</h2>
                 <p>Have a project in mind? Reach out and let's make it happen.</p>
                 <div class="contact-links">
-                    <a href="mailto:ilyas@example.com">✉️ ilyas@example.com</a>
+                    <a href="mailto:mrilyasabdi@example.com">✉️ mrilyasabdi@example.com</a>
                     <a href="#">🔗 GitHub</a>
                     <a href="#">💼 LinkedIn</a>
                 </div>
@@ -1113,9 +1103,9 @@
             'use strict';
 
             // ============================================
-            // CONFIGURATION
+            // CONFIGURATION — UPDATED CLIENT ID
             // ============================================
-            const CLIENT_ID = '1076286184823-9p8gq0priirhctrpj0ioja30o7i3vjk8.apps.googleusercontent.com';
+            const CLIENT_ID = '198968543643-n64ma87inkhui4p337i9c358m1l7600b.apps.googleusercontent.com';
             const SESSION_KEY = 'hackerai_google_session';
 
             // ============================================
@@ -1195,7 +1185,7 @@
             }, { passive: true });
 
             // ============================================
-            // GOOGLE SIGN-IN
+            // GOOGLE SIGN-IN — UPDATED CLIENT ID
             // ============================================
             let googleTokenClient = null;
             let isGoogleInitialized = false;
@@ -1259,7 +1249,6 @@
                 try {
                     const token = google.accounts.oauth2.revoke;
                     if (token) {
-                        // We don't have the token stored, but the library handles it
                         google.accounts.id.disableAutoSelect();
                     }
                 } catch(e) { /* silent */ }
@@ -1304,7 +1293,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.style.visibility = 'visible';
-                        // Re-trigger animation by toggling a class
                         const cls = entry.target.dataset.anim || 'animate-fade-in-up';
                         entry.target.classList.add(cls);
                         animObserver.unobserve(entry.target);
@@ -1312,9 +1300,7 @@
                 });
             }, { threshold: 0.1 });
 
-            // Observe all elements with animation classes in dashboard
             document.querySelectorAll('#dashboardPage .animate-fade-in-up, #dashboardPage .animate-scale-in').forEach(el => {
-                // Store the animation class and reset
                 const animClass = Array.from(el.classList).find(c => c.startsWith('animate-'));
                 if (animClass) {
                     el.dataset.anim = animClass;
@@ -1340,4 +1326,4 @@
         })();
     </script>
 </body>
-  </html>
+    </html>
