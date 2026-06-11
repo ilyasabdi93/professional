@@ -7,506 +7,337 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --orange-primary: #FF6B00;
+            --orange: #FF6B00;
             --orange-dark: #CC5500;
             --orange-light: #FF8C33;
-            --black-primary: #0A0A0A;
-            --black-secondary: #111;
-            --black-tertiary: #1C1C1C;
-            --glass-bg: rgba(255, 107, 0, 0.06);
+            --black: #0A0A0A;
+            --black2: #111;
+            --glass: rgba(255, 107, 0, 0.06);
             --glass-border: rgba(255, 107, 0, 0.15);
-            --text-primary: #F0F0F0;
-            --text-secondary: #A8A8A8;
-            --text-muted: #5A5A5A;
+            --text: #F0F0F0;
+            --text2: #A8A8A8;
+            --text3: #5A5A5A;
             --error: #EF4444;
             --success: #22C55E;
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            --font: 'Inter', sans-serif;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font);
-            background: var(--black-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        a { text-decoration: none; color: inherit; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--black-primary); }
-        ::-webkit-scrollbar-thumb { background: var(--orange-primary); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--orange-dark); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'Inter',sans-serif; background:var(--black); color:var(--text); min-height:100vh; overflow-x:hidden; }
+        a { text-decoration:none; color:inherit; }
+        ::-webkit-scrollbar { width:8px; }
+        ::-webkit-scrollbar-track { background:var(--black); }
+        ::-webkit-scrollbar-thumb { background:var(--orange); border-radius:4px; }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.92); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255,107,0,0.15); }
-            50% { box-shadow: 0 0 40px rgba(255,107,0,0.35); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        @keyframes scaleIn { from{opacity:0;transform:scale(0.92)} to{opacity:1;transform:scale(1)} }
+        @keyframes slideDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes pulseGlow { 0%,100%{box-shadow:0 0 20px rgba(255,107,0,0.15)} 50%{box-shadow:0 0 40px rgba(255,107,0,0.35)} }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+        @keyframes spin { to{transform:rotate(360deg)} }
 
-        .animate-fade-in-up { animation: fadeInUp 0.7s ease forwards; }
-        .animate-scale-in { animation: scaleIn 0.5s ease forwards; }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
+        .anim-up { animation:fadeInUp 0.7s ease forwards; }
+        .anim-scale { animation:scaleIn 0.5s ease forwards; }
+        .d1 { animation-delay:0.1s; } .d2 { animation-delay:0.2s; } .d3 { animation-delay:0.3s; } .d4 { animation-delay:0.4s; }
 
         .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px) saturate(1.4);
-            -webkit-backdrop-filter: blur(20px) saturate(1.4);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            background:var(--glass); backdrop-filter:blur(20px) saturate(1.4);
+            -webkit-backdrop-filter:blur(20px) saturate(1.4);
+            border:1px solid var(--glass-border); box-shadow:0 8px 32px rgba(0,0,0,0.5);
         }
 
-        .spinner-lg {
-            width: 48px; height: 48px;
-            border: 4px solid rgba(255,107,0,0.15);
-            border-top-color: var(--orange-primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+        .spinner-lg { width:48px; height:48px; border:4px solid rgba(255,107,0,0.15); border-top-color:var(--orange); border-radius:50%; animation:spin 0.8s linear infinite; }
+        .spinner-sm { width:18px; height:18px; border:2px solid rgba(255,255,255,0.2); border-top-color:#fff; border-radius:50%; animation:spin 0.7s linear infinite; display:inline-block; }
+
+        .page { display:none; animation:fadeIn 0.4s ease; }
+        .page.active { display:block; }
+
+        /* Loading */
+        #loading { position:fixed; inset:0; background:var(--black); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:20px; z-index:99999; transition:opacity 0.4s; }
+        #loading.hide { opacity:0; pointer-events:none; }
+        #loading p { color:var(--text2); font-size:15px; }
+
+        /* Auth */
+        #authPage { min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+        .bg-orbs { position:absolute; width:100%; height:100%; pointer-events:none; }
+        .bg-orbs .o { position:absolute; border-radius:50%; filter:blur(100px); opacity:0.12; }
+        .bg-orbs .o1 { width:450px; height:450px; background:var(--orange); top:-15%; left:-8%; animation:float 9s infinite; }
+        .bg-orbs .o2 { width:380px; height:380px; background:var(--orange-dark); bottom:-12%; right:-8%; animation:float 11s infinite reverse; }
+        .bg-orbs .o3 { width:260px; height:260px; background:var(--orange-light); top:50%; left:50%; transform:translate(-50%,-50%); animation:float 13s infinite; }
+
+        .auth-wrap { width:100%; max-width:460px; padding:20px; position:relative; z-index:2; }
+        .auth-card { padding:40px 36px; border-radius:24px; text-align:center; animation:scaleIn 0.6s ease; }
+        .auth-card .icon { font-size:42px; display:block; margin-bottom:10px; }
+        .auth-card h1 { font-size:26px; font-weight:700; margin-bottom:4px; background:linear-gradient(135deg,var(--orange),var(--orange-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .auth-card .sub { color:var(--text2); font-size:14px; margin-bottom:22px; }
+
+        .tabs { display:flex; border-radius:8px; border:1px solid var(--glass-border); overflow:hidden; margin-bottom:22px; }
+        .tab { flex:1; padding:11px 16px; background:transparent; border:none; color:var(--text3); font-size:14px; font-weight:500; font-family:inherit; cursor:pointer; transition:0.3s; }
+        .tab.active { background:rgba(255,107,0,0.12); color:var(--orange); }
+        .tab:hover:not(.active) { color:var(--text2); background:rgba(255,255,255,0.03); }
+
+        .form-box { display:none; text-align:left; }
+        .form-box.show { display:block; animation:slideDown 0.35s ease; }
+
+        .fg { margin-bottom:16px; }
+        .fg label { display:block; font-size:13px; font-weight:500; color:var(--text2); margin-bottom:5px; }
+        .fg input, .fg textarea {
+            width:100%; padding:13px 16px; border:1px solid var(--glass-border); border-radius:8px;
+            background:rgba(255,255,255,0.04); color:var(--text); font-size:14px; font-family:inherit; outline:none; transition:0.3s;
         }
+        .fg input:focus, .fg textarea:focus { border-color:var(--orange); box-shadow:0 0 0 3px rgba(255,107,0,0.08); }
+        .fg input::placeholder { color:var(--text3); }
+        .fg .err { font-size:12px; color:var(--error); display:none; margin-top:4px; }
+        .fg.err input { border-color:var(--error); }
+        .fg.err .err { display:block; }
 
-        .page { display: none; animation: fadeIn 0.4s ease; }
-        .page.active { display: block; }
+        .pw-wrap { position:relative; }
+        .pw-toggle { position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--text3); cursor:pointer; font-size:16px; }
+        .forgot-link { font-size:13px; color:var(--orange); cursor:pointer; display:inline-block; margin-top:2px; }
+        .forgot-link:hover { color:var(--orange-light); }
 
-        /* Auth Loading */
-        #authLoading {
-            position: fixed; inset: 0;
-            background: var(--black-primary);
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; gap: 20px;
-            z-index: 99999;
-            transition: opacity 0.4s ease;
+        .btn {
+            width:100%; padding:15px; border:none; border-radius:8px;
+            background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+            color:#fff; font-size:15px; font-weight:600; font-family:inherit;
+            cursor:pointer; transition:0.3s; margin-top:4px;
+            display:inline-flex; align-items:center; justify-content:center; gap:10px;
         }
-        #authLoading.hidden { opacity: 0; pointer-events: none; }
-        #authLoading p { color: var(--text-secondary); font-size: 15px; }
+        .btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(255,107,0,0.25); }
+        .btn:disabled { opacity:0.6; cursor:not-allowed; transform:none!important; }
 
-        /* Auth Page */
-        #authPage {
-            min-height: 100vh; display: flex;
-            align-items: center; justify-content: center;
-            position: relative; overflow: hidden;
+        .divider { display:flex; align-items:center; gap:16px; margin:18px 0; color:var(--text3); font-size:12px; text-transform:uppercase; letter-spacing:1px; }
+        .divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--glass-border); }
+
+        .gbtn {
+            display:flex; align-items:center; justify-content:center; gap:14px;
+            width:100%; padding:13px 24px; border:1px solid var(--glass-border); border-radius:8px;
+            background:rgba(255,255,255,0.04); color:var(--text);
+            font-size:15px; font-weight:500; font-family:inherit; cursor:pointer; transition:0.3s;
         }
-        .auth-bg { position: absolute; width: 100%; height: 100%; pointer-events: none; }
-        .auth-bg .orb {
-            position: absolute; border-radius: 50%;
-            filter: blur(100px); opacity: 0.12;
-        }
-        .auth-bg .orb-1 { width: 450px; height: 450px; background: var(--orange-primary); top: -15%; left: -8%; animation: float 9s infinite; }
-        .auth-bg .orb-2 { width: 380px; height: 380px; background: var(--orange-dark); bottom: -12%; right: -8%; animation: float 11s infinite reverse; }
-        .auth-bg .orb-3 { width: 260px; height: 260px; background: var(--orange-light); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: float 13s infinite; }
+        .gbtn:hover { border-color:var(--orange); transform:translateY(-2px); }
+        .gbtn svg { width:20px; height:20px; }
 
-        .auth-container { width: 100%; max-width: 460px; padding: 20px; position: relative; z-index: 2; }
-        .auth-card { padding: 40px 36px; border-radius: var(--radius-lg); text-align: center; animation: scaleIn 0.6s ease; }
-        .auth-card .auth-icon { font-size: 42px; display: block; margin-bottom: 10px; }
-        .auth-card h1 {
-            font-size: 26px; font-weight: 700; margin-bottom: 4px;
-            background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .auth-card .auth-subtitle { color: var(--text-secondary); font-size: 14px; margin-bottom: 22px; }
+        .notif { margin-top:12px; padding:10px 14px; border-radius:8px; font-size:13px; display:none; line-height:1.5; }
+        .notif.show { display:block; animation:slideDown 0.3s ease; }
+        .notif.err { background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.25); color:#FF6B6B; }
+        .notif.ok { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.25); color:#4ADE80; }
 
-        .auth-tabs { display: flex; border-radius: var(--radius-sm); border: 1px solid var(--glass-border); overflow: hidden; margin-bottom: 22px; }
-        .auth-tab { flex: 1; padding: 11px 16px; background: transparent; border: none; color: var(--text-muted); font-size: 14px; font-weight: 500; font-family: var(--font); cursor: pointer; transition: var(--transition); }
-        .auth-tab.active { background: rgba(255,107,0,0.12); color: var(--orange-primary); }
-        .auth-tab:hover:not(.active) { color: var(--text-secondary); background: rgba(255,255,255,0.03); }
+        .ft { margin-top:16px; font-size:12px; color:var(--text3); }
+        .ft span { color:var(--orange); }
 
-        .auth-form-container { display: none; text-align: left; }
-        .auth-form-container.active { display: block; animation: slideDown 0.35s ease; }
-
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-bottom: 5px; }
-        .form-group input,
-        .form-group textarea {
-            width: 100%; padding: 13px 16px;
-            border: 1px solid var(--glass-border); border-radius: var(--radius-sm);
-            background: rgba(255,255,255,0.04); color: var(--text-primary);
-            font-size: 14px; font-family: var(--font); outline: none; transition: var(--transition);
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--orange-primary);
-            box-shadow: 0 0 0 3px rgba(255,107,0,0.08);
-        }
-        .form-group input::placeholder,
-        .form-group textarea::placeholder { color: var(--text-muted); }
-        .form-group .error-text { font-size: 12px; color: var(--error); display: none; margin-top: 4px; }
-        .form-group.error input { border-color: var(--error); box-shadow: 0 0 0 3px rgba(239,68,68,0.08); }
-        .form-group.error .error-text { display: block; }
-
-        .password-wrapper { position: relative; }
-        .password-toggle { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; padding: 2px; line-height: 1; }
-        .password-toggle:hover { color: var(--text-secondary); }
-
-        .forgot-link { font-size: 13px; color: var(--orange-primary); cursor: pointer; display: inline-block; margin-top: 2px; transition: var(--transition); }
-        .forgot-link:hover { color: var(--orange-light); }
-
-        .btn-submit {
-            width: 100%; padding: 15px; border: none; border-radius: var(--radius-sm);
-            background: linear-gradient(135deg, var(--orange-primary), var(--orange-dark));
-            color: #fff; font-size: 15px; font-weight: 600; font-family: var(--font);
-            cursor: pointer; transition: var(--transition); margin-top: 4px;
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-        }
-        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,107,0,0.25); }
-        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
-
-        .spinner {
-            width: 18px; height: 18px;
-            border: 2px solid rgba(255,255,255,0.2);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-            display: inline-block;
-        }
-
-        .auth-divider {
-            display: flex; align-items: center; gap: 16px;
-            margin: 18px 0; color: var(--text-muted);
-            font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
-        }
-        .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--glass-border); }
-
-        .g-sign-in-btn {
-            display: flex; align-items: center; justify-content: center; gap: 14px;
-            width: 100%; padding: 13px 24px;
-            border: 1px solid var(--glass-border); border-radius: var(--radius-sm);
-            background: rgba(255,255,255,0.04); color: var(--text-primary);
-            font-size: 15px; font-weight: 500; font-family: var(--font);
-            cursor: pointer; transition: var(--transition);
-        }
-        .g-sign-in-btn:hover {
-            border-color: var(--orange-primary);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(255,107,0,0.1);
-        }
-        .g-sign-in-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
-
-        .auth-notification {
-            margin-top: 12px; padding: 10px 14px;
-            border-radius: var(--radius-sm); font-size: 13px;
-            display: none; line-height: 1.5;
-        }
-        .auth-notification.show { display: block; animation: slideDown 0.3s ease; }
-        .auth-notification.error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); color: #FF6B6B; }
-        .auth-notification.success { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: #4ADE80; }
-        .auth-notification.info { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25); color: #60A5FA; }
-
-        .auth-footer-text { margin-top: 16px; font-size: 12px; color: var(--text-muted); }
-        .auth-footer-text span { color: var(--orange-primary); }
-
-        /* Forgot Page */
-        #forgotPage {
-            min-height: 100vh; display: flex;
-            align-items: center; justify-content: center;
-            position: relative; overflow: hidden;
-        }
-        .forgot-container { width: 100%; max-width: 440px; padding: 20px; position: relative; z-index: 2; }
-        .forgot-card { padding: 40px 36px; border-radius: var(--radius-lg); text-align: center; animation: scaleIn 0.6s ease; }
-        .forgot-card .forgot-icon { font-size: 48px; display: block; margin-bottom: 12px; }
-        .forgot-card h1 {
-            font-size: 24px; font-weight: 700; margin-bottom: 4px;
-            background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .forgot-card .forgot-subtitle { color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; }
-        .forgot-card .back-link { display: inline-block; margin-top: 16px; color: var(--text-muted); font-size: 13px; cursor: pointer; transition: var(--transition); }
-        .forgot-card .back-link:hover { color: var(--orange-primary); }
+        /* Forgot */
+        #forgotPage { min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+        .forgot-wrap { width:100%; max-width:440px; padding:20px; position:relative; z-index:2; }
+        .forgot-card { padding:40px 36px; border-radius:24px; text-align:center; animation:scaleIn 0.6s ease; }
+        .forgot-card .fi { font-size:48px; display:block; margin-bottom:12px; }
+        .forgot-card h1 { font-size:24px; font-weight:700; margin-bottom:4px; background:linear-gradient(135deg,var(--orange),var(--orange-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .forgot-card .fs { color:var(--text2); font-size:14px; margin-bottom:24px; }
+        .back-link { display:inline-block; margin-top:16px; color:var(--text3); font-size:13px; cursor:pointer; transition:0.3s; }
+        .back-link:hover { color:var(--orange); }
 
         /* Portfolio */
-        #portfolioPage { min-height: 100vh; background: var(--black-primary); }
+        #portPage { min-height:100vh; }
 
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 16px 32px;
-            display: flex; align-items: center; justify-content: space-between;
-            transition: var(--transition);
+        .navbar { position:fixed; top:0; left:0; right:0; z-index:1000; padding:16px 32px; display:flex; align-items:center; justify-content:space-between; transition:0.3s; }
+        .navbar.scroll { background:rgba(10,10,10,0.88); backdrop-filter:blur(22px); border-bottom:1px solid var(--glass-border); padding:10px 32px; }
+        .navbar .brand { display:flex; align-items:center; gap:10px; font-size:19px; font-weight:700; }
+        .navbar .brand .dot { width:10px; height:10px; background:var(--orange); border-radius:50%; animation:pulseGlow 2s infinite; }
+        .navbar .right { display:flex; align-items:center; gap:18px; }
+        .navbar .user { display:flex; align-items:center; gap:12px; padding:5px 14px 5px 5px; border-radius:50px; background:rgba(255,255,255,0.04); border:1px solid var(--glass-border); }
+        .navbar .avatar { width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid var(--orange); }
+        .navbar .init { width:36px; height:36px; border-radius:50%; background:var(--orange); color:#fff; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; border:2px solid var(--orange); }
+        .navbar .ud { line-height:1.25; }
+        .navbar .un { font-size:13px; font-weight:600; }
+        .navbar .ue { font-size:11px; color:var(--text3); }
+        .lobtn { padding:8px 18px; border:1px solid rgba(255,107,0,0.3); border-radius:50px; background:transparent; color:var(--orange); font-size:13px; font-weight:500; font-family:inherit; cursor:pointer; transition:0.3s; }
+        .lobtn:hover { background:rgba(255,107,0,0.12); border-color:var(--orange); }
+
+        .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:120px 32px 80px; position:relative; overflow:hidden; }
+        .hbg { position:absolute; inset:0; pointer-events:none; }
+        .hbg .o { position:absolute; border-radius:50%; filter:blur(120px); opacity:0.08; }
+        .hbg .oa { width:550px; height:550px; background:var(--orange); top:-20%; right:-10%; animation:float 13s infinite; }
+        .hbg .ob { width:420px; height:420px; background:var(--orange-dark); bottom:-18%; left:-10%; animation:float 15s infinite reverse; }
+        .hc { position:relative; z-index:2; text-align:center; max-width:820px; }
+        .badge { display:inline-flex; align-items:center; gap:8px; padding:8px 20px; border-radius:50px; background:rgba(255,107,0,0.1); border:1px solid rgba(255,107,0,0.2); font-size:13px; color:var(--orange-light); margin-bottom:24px; }
+        .badge .d { width:6px; height:6px; background:var(--orange); border-radius:50%; animation:pulseGlow 2s infinite; }
+        .hero h1 { font-size:clamp(38px,7vw,72px); font-weight:800; line-height:1.08; margin-bottom:18px; }
+        .hero h1 .hl { background:linear-gradient(135deg,var(--orange),var(--orange-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .hero p { font-size:clamp(16px,2vw,19px); color:var(--text2); line-height:1.75; max-width:620px; margin:0 auto 32px; }
+        .hcta { display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; }
+
+        .btn1, .btn2 { padding:15px 34px; border-radius:50px; font-size:15px; font-weight:600; font-family:inherit; cursor:pointer; transition:0.3s; display:inline-flex; align-items:center; gap:8px; }
+        .btn1 { border:none; background:linear-gradient(135deg,var(--orange),var(--orange-dark)); color:#fff; }
+        .btn1:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(255,107,0,0.3); }
+        .btn2 { border:1px solid var(--glass-border); background:transparent; color:var(--text); }
+        .btn2:hover { border-color:var(--orange); background:rgba(255,107,0,0.06); transform:translateY(-3px); }
+
+        .sec { padding:100px 32px; max-width:1200px; margin:0 auto; }
+        .sl { display:inline-block; font-size:12px; text-transform:uppercase; letter-spacing:3px; color:var(--orange); font-weight:600; margin-bottom:10px; }
+        .st { font-size:clamp(28px,4vw,44px); font-weight:700; margin-bottom:14px; }
+        .sd { color:var(--text2); font-size:16px; line-height:1.7; max-width:600px; margin-bottom:44px; }
+
+        .ag { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+        .ai { width:100%; aspect-ratio:1; border-radius:24px; background:linear-gradient(135deg,#1C1C1C,#111); display:flex; align-items:center; justify-content:center; font-size:80px; border:1px solid var(--glass-border); }
+        .at h3 { font-size:22px; font-weight:600; margin-bottom:12px; }
+        .at p { color:var(--text2); font-size:15px; line-height:1.75; margin-bottom:16px; }
+        .ast { display:flex; gap:32px; margin-top:20px; }
+        .ast h4 { font-size:28px; font-weight:700; color:var(--orange); }
+        .ast p { font-size:13px; color:var(--text3); margin:0; }
+
+        .sg { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; }
+        .si { padding:14px 20px; border-radius:8px; border:1px solid var(--glass-border); text-align:center; font-size:14px; color:var(--text2); transition:0.3s; background:rgba(255,255,255,0.02); }
+        .si:hover { border-color:var(--orange); color:var(--orange); background:rgba(255,107,0,0.06); transform:translateY(-3px); }
+        .si .sicon { font-size:24px; display:block; margin-bottom:6px; }
+
+        .svg { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
+        .svc { padding:34px 26px; border-radius:16px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.02); transition:0.3s; position:relative; overflow:hidden; }
+        .svc::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,var(--orange),transparent); transform:scaleX(0); transition:0.3s; }
+        .svc:hover::before { transform:scaleX(1); }
+        .svc:hover { border-color:rgba(255,107,0,0.3); transform:translateY(-6px); box-shadow:0 12px 40px rgba(255,107,0,0.06); }
+        .svc .ic { font-size:34px; margin-bottom:14px; display:block; }
+        .svc h3 { font-size:19px; font-weight:600; margin-bottom:8px; }
+        .svc p { color:var(--text2); font-size:14px; line-height:1.65; }
+
+        .tl { position:relative; padding-left:32px; }
+        .tl::before { content:''; position:absolute; left:8px; top:4px; bottom:4px; width:2px; background:linear-gradient(to bottom,var(--orange),transparent); }
+        .tli { position:relative; padding-bottom:36px; padding-left:20px; }
+        .tli::before { content:''; position:absolute; left:-28px; top:4px; width:14px; height:14px; border-radius:50%; background:var(--orange); border:3px solid var(--black); box-shadow:0 0 0 2px var(--orange); }
+        .tli .yr { font-size:13px; color:var(--orange); font-weight:600; margin-bottom:4px; }
+        .tli h4 { font-size:17px; font-weight:600; margin-bottom:4px; }
+        .tli .co { color:var(--text3); font-size:14px; margin-bottom:6px; }
+        .tli p { color:var(--text2); font-size:14px; line-height:1.6; }
+
+        .pg { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:24px; }
+        .pc { border-radius:16px; overflow:hidden; border:1px solid var(--glass-border); background:rgba(255,255,255,0.02); transition:0.3s; }
+        .pc:hover { border-color:rgba(255,107,0,0.3); transform:translateY(-6px); box-shadow:0 12px 40px rgba(255,107,0,0.06); }
+        .pc .pimg { height:200px; background:linear-gradient(135deg,#1C1C1C,#111); display:flex; align-items:center; justify-content:center; font-size:42px; border-bottom:1px solid var(--glass-border); }
+        .pc .pb { padding:24px; }
+        .pc .pb h3 { font-size:18px; font-weight:600; margin-bottom:6px; }
+        .pc .pb p { color:var(--text2); font-size:14px; line-height:1.6; margin-bottom:12px; }
+        .pc .pt { display:flex; flex-wrap:wrap; gap:8px; }
+        .pc .pt span { padding:4px 12px; border-radius:50px; background:rgba(255,107,0,0.08); color:var(--orange-light); font-size:12px; }
+
+        .cg { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+        .ci h3 { font-size:20px; font-weight:600; margin-bottom:12px; }
+        .ci p { color:var(--text2); font-size:15px; line-height:1.7; margin-bottom:24px; }
+        .cd { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+        .cd .cdi { width:44px; height:44px; border-radius:50%; background:rgba(255,107,0,0.08); display:flex; align-items:center; justify-content:center; font-size:18px; }
+        .cd .cdt { font-size:14px; }
+        .cd .cdt strong { display:block; color:var(--text); margin-bottom:2px; }
+        .cd .cdt span { color:var(--text3); }
+        .cf .fg textarea { min-height:100px; resize:vertical; }
+
+        footer { padding:48px 32px 32px; border-top:1px solid var(--glass-border); }
+        .fc { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; }
+        .fc .fb { font-size:18px; font-weight:700; }
+        .fc .fb span { color:var(--orange); }
+        .fsocial { display:flex; gap:16px; }
+        .fsocial a { width:40px; height:40px; border-radius:50%; border:1px solid var(--glass-border); display:flex; align-items:center; justify-content:center; font-size:18px; transition:0.3s; }
+        .fsocial a:hover { border-color:var(--orange); color:var(--orange); transform:translateY(-3px); }
+        .fcopy { width:100%; text-align:center; margin-top:24px; color:var(--text3); font-size:13px; }
+        .fcopy span { color:var(--orange); }
+
+        @media(max-width:968px){ .ag,.cg{grid-template-columns:1fr} .ai{max-width:400px;margin:0 auto} }
+        @media(max-width:768px){
+            .navbar{padding:12px 16px}.navbar.scroll{padding:8px 16px}
+            .navbar .ud{display:none}.navbar .user{padding:4px;gap:6px}
+            .lobtn{padding:6px 14px;font-size:12px}
+            .auth-card,.forgot-card{padding:28px 20px}
+            .hero{padding:100px 16px 60px}
+            .sec{padding:60px 16px}
+            .ast{gap:20px;flex-wrap:wrap}
+            .svg,.pg{grid-template-columns:1fr}
+            .fc{flex-direction:column;text-align:center}
         }
-        .navbar.scrolled {
-            background: rgba(10,10,10,0.88);
-            backdrop-filter: blur(22px) saturate(1.6);
-            -webkit-backdrop-filter: blur(22px) saturate(1.6);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 10px 32px;
-        }
-        .navbar .brand { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 700; color: var(--text-primary); }
-        .navbar .brand .brand-dot { width: 10px; height: 10px; background: var(--orange-primary); border-radius: 50%; display: inline-block; animation: pulseGlow 2s infinite; }
-        .navbar .nav-right { display: flex; align-items: center; gap: 18px; }
-        .navbar .user-info {
-            display: flex; align-items: center; gap: 12px;
-            padding: 5px 14px 5px 5px; border-radius: 50px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(12px);
-        }
-        .navbar .user-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--orange-primary); }
-        .navbar .user-initials { width: 36px; height: 36px; border-radius: 50%; background: var(--orange-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; border: 2px solid var(--orange-primary); flex-shrink: 0; }
-        .navbar .user-details { display: flex; flex-direction: column; line-height: 1.25; }
-        .navbar .user-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
-        .navbar .user-email { font-size: 11px; color: var(--text-muted); }
-        .logout-btn {
-            padding: 8px 18px; border: 1px solid rgba(255,107,0,0.3);
-            border-radius: 50px; background: transparent; color: var(--orange-primary);
-            font-size: 13px; font-weight: 500; font-family: var(--font);
-            cursor: pointer; transition: var(--transition);
-        }
-        .logout-btn:hover { background: rgba(255,107,0,0.12); border-color: var(--orange-primary); transform: translateY(-1px); }
-
-        .hero {
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            padding: 120px 32px 80px; position: relative; overflow: hidden;
-        }
-        .hero-bg { position: absolute; inset: 0; pointer-events: none; }
-        .hero-bg .orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.08; }
-        .hero-bg .orb-a { width: 550px; height: 550px; background: var(--orange-primary); top: -20%; right: -10%; animation: float 13s infinite; }
-        .hero-bg .orb-b { width: 420px; height: 420px; background: var(--orange-dark); bottom: -18%; left: -10%; animation: float 15s infinite reverse; }
-        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 820px; }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 8px 20px; border-radius: 50px;
-            background: rgba(255,107,0,0.1); border: 1px solid rgba(255,107,0,0.2);
-            font-size: 13px; color: var(--orange-light); margin-bottom: 24px;
-            animation: fadeInUp 0.6s ease;
-        }
-        .hero-badge .dot { width: 6px; height: 6px; background: var(--orange-primary); border-radius: 50%; animation: pulseGlow 2s infinite; }
-        .hero h1 { font-size: clamp(38px, 7vw, 72px); font-weight: 800; line-height: 1.08; margin-bottom: 18px; animation: fadeInUp 0.7s ease 0.1s both; }
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero p { font-size: clamp(16px, 2vw, 19px); color: var(--text-secondary); line-height: 1.75; max-width: 620px; margin: 0 auto 32px; animation: fadeInUp 0.7s ease 0.2s both; }
-        .hero-cta { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; animation: fadeInUp 0.7s ease 0.3s both; }
-
-        .btn-primary, .btn-outline {
-            padding: 15px 34px; border-radius: 50px;
-            font-size: 15px; font-weight: 600; font-family: var(--font);
-            cursor: pointer; transition: var(--transition);
-            text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-        }
-        .btn-primary { border: none; background: linear-gradient(135deg, var(--orange-primary), var(--orange-dark)); color: #fff; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255,107,0,0.3); }
-        .btn-outline { border: 1px solid var(--glass-border); background: transparent; color: var(--text-primary); }
-        .btn-outline:hover { border-color: var(--orange-primary); background: rgba(255,107,0,0.06); transform: translateY(-3px); }
-
-        .section { padding: 100px 32px; max-width: 1200px; margin: 0 auto; }
-        .section-label { display: inline-block; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--orange-primary); font-weight: 600; margin-bottom: 10px; }
-        .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 700; margin-bottom: 14px; }
-        .section-desc { color: var(--text-secondary); font-size: 16px; line-height: 1.7; max-width: 600px; margin-bottom: 44px; }
-
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-        .about-image { width: 100%; aspect-ratio: 1; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--black-tertiary), var(--black-secondary)); display: flex; align-items: center; justify-content: center; font-size: 80px; border: 1px solid var(--glass-border); position: relative; overflow: hidden; }
-        .about-image::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 40%, rgba(255,107,0,0.06), transparent 70%); }
-        .about-text h3 { font-size: 22px; font-weight: 600; margin-bottom: 12px; }
-        .about-text p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; margin-bottom: 16px; }
-        .about-stats { display: flex; gap: 32px; margin-top: 20px; }
-        .about-stat h4 { font-size: 28px; font-weight: 700; color: var(--orange-primary); }
-        .about-stat p { font-size: 13px; color: var(--text-muted); margin: 0; }
-
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
-        .skill-item { padding: 14px 20px; border-radius: var(--radius-sm); border: 1px solid var(--glass-border); text-align: center; font-size: 14px; color: var(--text-secondary); transition: var(--transition); background: rgba(255,255,255,0.02); cursor: default; }
-        .skill-item:hover { border-color: var(--orange-primary); color: var(--orange-primary); background: rgba(255,107,0,0.06); transform: translateY(-3px); }
-        .skill-item .skill-icon { font-size: 24px; display: block; margin-bottom: 6px; }
-
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .service-card {
-            padding: 34px 26px; border-radius: var(--radius-md);
-            border: 1px solid var(--glass-border);
-            background: rgba(255,255,255,0.02);
-            transition: var(--transition); position: relative; overflow: hidden;
-        }
-        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--orange-primary), transparent); transform: scaleX(0); transition: var(--transition); }
-        .service-card:hover::before { transform: scaleX(1); }
-        .service-card:hover { border-color: rgba(255,107,0,0.3); transform: translateY(-6px); box-shadow: 0 12px 40px rgba(255,107,0,0.06); }
-        .service-card .icon { font-size: 34px; margin-bottom: 14px; display: block; }
-        .service-card h3 { font-size: 19px; font-weight: 600; margin-bottom: 8px; }
-        .service-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.65; }
-
-        .timeline { position: relative; padding-left: 32px; }
-        .timeline::before { content: ''; position: absolute; left: 8px; top: 4px; bottom: 4px; width: 2px; background: linear-gradient(to bottom, var(--orange-primary), transparent); }
-        .timeline-item { position: relative; padding-bottom: 36px; padding-left: 20px; }
-        .timeline-item::before { content: ''; position: absolute; left: -28px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--orange-primary); border: 3px solid var(--black-primary); box-shadow: 0 0 0 2px var(--orange-primary); }
-        .timeline-item .year { font-size: 13px; color: var(--orange-primary); font-weight: 600; margin-bottom: 4px; }
-        .timeline-item h4 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
-        .timeline-item .company { color: var(--text-muted); font-size: 14px; margin-bottom: 6px; }
-        .timeline-item p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
-
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-        .project-card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); transition: var(--transition); }
-        .project-card:hover { border-color: rgba(255,107,0,0.3); transform: translateY(-6px); box-shadow: 0 12px 40px rgba(255,107,0,0.06); }
-        .project-card .project-img { height: 200px; background: linear-gradient(135deg, var(--black-tertiary), var(--black-secondary)); display: flex; align-items: center; justify-content: center; font-size: 42px; border-bottom: 1px solid var(--glass-border); }
-        .project-card .project-body { padding: 24px; }
-        .project-card .project-body h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
-        .project-card .project-body p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 12px; }
-        .project-card .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .project-card .project-tags span { padding: 4px 12px; border-radius: 50px; background: rgba(255,107,0,0.08); color: var(--orange-light); font-size: 12px; }
-
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .contact-info h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
-        .contact-info p { color: var(--text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
-        .contact-detail { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-        .contact-detail .cd-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,107,0,0.08); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-        .contact-detail .cd-text { font-size: 14px; }
-        .contact-detail .cd-text strong { display: block; color: var(--text-primary); margin-bottom: 2px; }
-        .contact-detail .cd-text span { color: var(--text-muted); }
-
-        .contact-form .form-group textarea { min-height: 100px; resize: vertical; }
-
-        footer { padding: 48px 32px 32px; border-top: 1px solid var(--glass-border); }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
-        .footer-content .footer-brand { font-size: 18px; font-weight: 700; }
-        .footer-content .footer-brand span { color: var(--orange-primary); }
-        .footer-socials { display: flex; gap: 16px; }
-        .footer-socials a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; font-size: 18px; transition: var(--transition); }
-        .footer-socials a:hover { border-color: var(--orange-primary); color: var(--orange-primary); transform: translateY(-3px); }
-        .footer-copy { width: 100%; text-align: center; margin-top: 24px; color: var(--text-muted); font-size: 13px; }
-        .footer-copy span { color: var(--orange-primary); }
-
-        @media (max-width: 968px) {
-            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-            .about-image { max-width: 400px; margin: 0 auto; }
-        }
-        @media (max-width: 768px) {
-            .navbar { padding: 12px 16px; }
-            .navbar.scrolled { padding: 8px 16px; }
-            .navbar .user-details { display: none; }
-            .navbar .user-info { padding: 4px; gap: 6px; }
-            .logout-btn { padding: 6px 14px; font-size: 12px; }
-            .auth-card, .forgot-card { padding: 28px 20px; }
-            .hero { padding: 100px 16px 60px; }
-            .section { padding: 60px 16px; }
-            .about-stats { gap: 20px; flex-wrap: wrap; }
-            .about-stat h4 { font-size: 22px; }
-            .services-grid, .projects-grid { grid-template-columns: 1fr; }
-            .footer-content { flex-direction: column; text-align: center; }
-        }
-        @media (max-width: 480px) {
-            .navbar .brand { font-size: 16px; }
-            .navbar .brand .brand-dot { width: 8px; height: 8px; }
-            .g-sign-in-btn { font-size: 14px; padding: 11px 16px; }
-            .btn-primary, .btn-outline { padding: 13px 22px; font-size: 14px; width: 100%; justify-content: center; }
-            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+        @media(max-width:480px){
+            .navbar .brand{font-size:16px}
+            .sg{grid-template-columns:repeat(2,1fr)}
+            .btn1,.btn2{width:100%;justify-content:center}
         }
     </style>
 </head>
 <body>
 
-    <!-- ============================================
-    AUTH LOADING OVERLAY
-    ============================================ -->
-    <div id="authLoading">
+    <!-- Loading -->
+    <div id="loading">
         <div class="spinner-lg"></div>
-        <p>Authenticating...</p>
+        <p>Loading...</p>
     </div>
 
-    <!-- ============================================
-    AUTH PAGE (Login / Register)
-    ============================================ -->
+    <!-- ============ AUTH PAGE ============ -->
     <div id="authPage" class="page active">
-        <div class="auth-bg">
-            <div class="orb orb-1"></div>
-            <div class="orb orb-2"></div>
-            <div class="orb orb-3"></div>
+        <div class="bg-orbs">
+            <div class="o o1"></div>
+            <div class="o o2"></div>
+            <div class="o o3"></div>
         </div>
-        <div class="auth-container">
+        <div class="auth-wrap">
             <div class="auth-card glass">
-                <span class="auth-icon">🖥️</span>
+                <span class="icon">🖥️</span>
                 <h1>Welcome Back</h1>
-                <p class="auth-subtitle">Sign in to access your portfolio dashboard</p>
+                <p class="sub">Sign in to access your portfolio dashboard</p>
 
-                <!-- Tabs -->
-                <div class="auth-tabs">
-                    <button class="auth-tab active" data-tab="login">Sign In</button>
-                    <button class="auth-tab" data-tab="register">Register</button>
+                <div class="tabs">
+                    <button class="tab active" data-tab="login">Sign In</button>
+                    <button class="tab" data-tab="register">Register</button>
                 </div>
 
-                <!-- Notification -->
-                <div id="authNotification" class="auth-notification"></div>
+                <div id="notif" class="notif"></div>
 
-                <!-- Login Form -->
-                <div id="loginFormContainer" class="auth-form-container active">
-                    <div class="form-group" id="loginEmailGroup">
+                <!-- Login -->
+                <div id="loginForm" class="form-box show">
+                    <div class="fg" id="loginEmailG">
                         <label>Email Address</label>
-                        <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" />
-                        <div class="error-text">Please enter a valid email address</div>
+                        <input type="email" id="loginEmail" placeholder="you@example.com" />
+                        <div class="err">Please enter a valid email address</div>
                     </div>
-                    <div class="form-group" id="loginPasswordGroup">
+                    <div class="fg" id="loginPassG">
                         <label>Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" />
-                            <button class="password-toggle" type="button" onclick="toggleField('loginPassword', this)">👁️</button>
+                        <div class="pw-wrap">
+                            <input type="password" id="loginPass" placeholder="Enter your password" />
+                            <button class="pw-toggle" type="button" onclick="togglePW('loginPass',this)">👁️</button>
                         </div>
-                        <div class="error-text">Password is required</div>
+                        <div class="err">Password is required</div>
                         <a class="forgot-link" onclick="showForgot()">Forgot password?</a>
                     </div>
-                    <button class="btn-submit" id="loginSubmitBtn" onclick="handleLogin()">Sign In</button>
+                    <button class="btn" id="loginBtn" onclick="handleLogin()">Sign In</button>
                 </div>
 
-                <!-- Register Form -->
-                <div id="registerFormContainer" class="auth-form-container">
-                    <div class="form-group" id="regNameGroup">
+                <!-- Register -->
+                <div id="registerForm" class="form-box">
+                    <div class="fg" id="regNameG">
                         <label>Full Name</label>
-                        <input type="text" id="regName" placeholder="Ilyas Abdi Ali" autocomplete="name" />
-                        <div class="error-text">Please enter your full name</div>
+                        <input type="text" id="regName" placeholder="Ilyas Abdi Ali" />
+                        <div class="err">Please enter your full name</div>
                     </div>
-                    <div class="form-group" id="regEmailGroup">
+                    <div class="fg" id="regEmailG">
                         <label>Email Address</label>
-                        <input type="email" id="regEmail" placeholder="you@example.com" autocomplete="email" />
-                        <div class="error-text">Please enter a valid email address</div>
+                        <input type="email" id="regEmail" placeholder="you@example.com" />
+                        <div class="err">Please enter a valid email address</div>
                     </div>
-                    <div class="form-group" id="regPasswordGroup">
+                    <div class="fg" id="regPassG">
                         <label>Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="regPassword" placeholder="Minimum 6 characters" autocomplete="new-password" />
-                            <button class="password-toggle" type="button" onclick="toggleField('regPassword', this)">👁️</button>
+                        <div class="pw-wrap">
+                            <input type="password" id="regPass" placeholder="Minimum 6 characters" />
+                            <button class="pw-toggle" type="button" onclick="togglePW('regPass',this)">👁️</button>
                         </div>
-                        <div class="error-text">Password must be at least 6 characters</div>
+                        <div class="err">Password must be at least 6 characters</div>
                     </div>
-                    <div class="form-group" id="regConfirmGroup">
+                    <div class="fg" id="regConfirmG">
                         <label>Confirm Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="regConfirm" placeholder="Confirm your password" autocomplete="new-password" />
-                            <button class="password-toggle" type="button" onclick="toggleField('regConfirm', this)">👁️</button>
+                        <div class="pw-wrap">
+                            <input type="password" id="regConfirm" placeholder="Confirm your password" />
+                            <button class="pw-toggle" type="button" onclick="togglePW('regConfirm',this)">👁️</button>
                         </div>
-                        <div class="error-text">Passwords do not match</div>
+                        <div class="err">Passwords do not match</div>
                     </div>
-                    <button class="btn-submit" id="registerSubmitBtn" onclick="handleRegister()">Create Account</button>
+                    <button class="btn" id="regBtn" onclick="handleRegister()">Create Account</button>
                 </div>
 
-                <div class="auth-divider">Or continue with</div>
+                <div class="divider">Or continue with</div>
 
-                <!-- Google Button -->
-                <button id="googleBtn" class="g-sign-in-btn">
+                <button id="googleBtn" class="gbtn">
                     <svg viewBox="0 0 24 24">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
                         <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -516,209 +347,184 @@
                     Sign in with Google
                 </button>
 
-                <p class="auth-footer-text">Secured by <span>Firebase Authentication</span></p>
+                <p class="ft">Secured by <span>Firebase Authentication</span></p>
             </div>
         </div>
     </div>
 
-    <!-- ============================================
-    FORGOT PASSWORD PAGE
-    ============================================ -->
+    <!-- ============ FORGOT PASSWORD PAGE ============ -->
     <div id="forgotPage" class="page">
-        <div class="auth-bg">
-            <div class="orb" style="width:400px;height:400px;background:var(--orange-primary);top:-15%;right:-10%;animation:float 10s infinite;"></div>
-            <div class="orb" style="width:300px;height:300px;background:var(--orange-dark);bottom:-15%;left:-10%;animation:float 12s infinite reverse;"></div>
+        <div class="bg-orbs">
+            <div class="o" style="width:400px;height:400px;background:var(--orange);top:-15%;right:-10%;animation:float 10s infinite;"></div>
+            <div class="o" style="width:300px;height:300px;background:var(--orange-dark);bottom:-15%;left:-10%;animation:float 12s infinite reverse;"></div>
         </div>
-        <div class="forgot-container">
+        <div class="forgot-wrap">
             <div class="forgot-card glass">
-                <span class="forgot-icon">🔐</span>
+                <span class="fi">🔐</span>
                 <h1>Reset Password</h1>
-                <p class="forgot-subtitle">Enter your email and we'll send you a reset link.</p>
-
-                <div id="forgotNotification" class="auth-notification"></div>
-
-                <div class="form-group" id="forgotEmailGroup" style="text-align:left;">
+                <p class="fs">Enter your email and we'll send you a reset link.</p>
+                <div id="forgotNotif" class="notif"></div>
+                <div class="fg" id="forgotEmailG" style="text-align:left;">
                     <label>Email Address</label>
-                    <input type="email" id="forgotEmail" placeholder="you@example.com" autocomplete="email" />
-                    <div class="error-text">Please enter a valid email address</div>
+                    <input type="email" id="forgotEmail" placeholder="you@example.com" />
+                    <div class="err">Please enter a valid email address</div>
                 </div>
-
-                <button class="btn-submit" id="forgotSubmitBtn" onclick="handleForgot()">Send Reset Link</button>
-
+                <button class="btn" id="forgotBtn" onclick="handleForgot()">Send Reset Link</button>
                 <a class="back-link" onclick="backToAuth()">← Back to Sign In</a>
             </div>
         </div>
     </div>
 
-    <!-- ============================================
-    PORTFOLIO PAGE
-    ============================================ -->
-    <div id="portfolioPage" class="page">
-
-        <!-- Navbar -->
+    <!-- ============ PORTFOLIO PAGE ============ -->
+    <div id="portPage" class="page">
         <nav class="navbar" id="navbar">
-            <a href="#" class="brand"><span class="brand-dot"></span>Ilyas Abdi Ali</a>
-            <div class="nav-right">
-                <div class="user-info">
-                    <div style="position:relative;">
-                        <img id="userAvatar" class="user-avatar" src="" alt="Avatar" style="display:none;" />
-                        <div id="userInitials" class="user-initials" style="display:none;"></div>
+            <div class="brand"><span class="dot"></span>Ilyas Abdi Ali</div>
+            <div class="right">
+                <div class="user">
+                    <div>
+                        <img id="userAvatar" class="avatar" src="" style="display:none;" />
+                        <div id="userInit" class="init" style="display:none;"></div>
                     </div>
-                    <div class="user-details">
-                        <span class="user-name" id="userName">User</span>
-                        <span class="user-email" id="userEmail">user@email.com</span>
+                    <div class="ud">
+                        <div class="un" id="userName">User</div>
+                        <div class="ue" id="userEmail">user@email.com</div>
                     </div>
                 </div>
-                <button class="logout-btn" id="logoutBtn">✕ Sign Out</button>
+                <button class="lobtn" id="logoutBtn">✕ Sign Out</button>
             </div>
         </nav>
 
-        <!-- Hero -->
-        <section class="hero" id="hero">
-            <div class="hero-bg"><div class="orb orb-a"></div><div class="orb orb-b"></div></div>
-            <div class="hero-content">
-                <div class="hero-badge"><span class="dot"></span>Web Development Designer</div>
-                <h1>Crafting <span class="highlight">Digital Experiences</span><br />That Matter</h1>
+        <section class="hero">
+            <div class="hbg"><div class="o oa"></div><div class="o ob"></div></div>
+            <div class="hc">
+                <div class="badge"><span class="d"></span>Web Development Designer</div>
+                <h1>Crafting <span class="hl">Digital Experiences</span><br />That Matter</h1>
                 <p>Hi, I'm <strong>Ilyas Abdi Ali</strong> — a professional web development designer specializing in modern, responsive, and secure web applications. Let's build something extraordinary together.</p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn-primary">View My Work ↓</a>
-                    <a href="#contact" class="btn-outline">Get In Touch</a>
-                    <a href="#" class="btn-outline" onclick="downloadResume()">📄 Download Resume</a>
+                <div class="hcta">
+                    <a href="#projects" class="btn1">View My Work ↓</a>
+                    <a href="#contact" class="btn2">Get In Touch</a>
+                    <a href="#" class="btn2" onclick="downloadResume()">📄 Download Resume</a>
                 </div>
             </div>
         </section>
 
-        <!-- About -->
-        <section class="section" id="about">
-            <span class="section-label">About Me</span>
-            <h2 class="section-title">Who I Am</h2>
-            <div class="about-grid">
-                <div class="about-image">👨‍💻</div>
-                <div>
+        <section class="sec" id="about">
+            <span class="sl">About Me</span>
+            <h2 class="st">Who I Am</h2>
+            <div class="ag">
+                <div class="ai">👨‍💻</div>
+                <div class="at">
                     <h3>Passionate Web Developer & Designer</h3>
                     <p>I'm Ilyas Abdi Ali, a creative problem-solver with over 5 years of experience building beautiful, high-performance web applications. I combine clean code with stunning design to deliver digital products that users love.</p>
                     <p>From startups to enterprise clients, I've helped businesses establish their online presence with modern, scalable, and secure solutions.</p>
-                    <div class="about-stats">
-                        <div class="about-stat"><h4>5+</h4><p>Years Experience</p></div>
-                        <div class="about-stat"><h4>50+</h4><p>Projects Done</p></div>
-                        <div class="about-stat"><h4>30+</h4><p>Happy Clients</p></div>
+                    <div class="ast">
+                        <div><h4>5+</h4><p>Years Experience</p></div>
+                        <div><h4>50+</h4><p>Projects Done</p></div>
+                        <div><h4>30+</h4><p>Happy Clients</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Skills -->
-        <section class="section" id="skills">
-            <span class="section-label">Skills</span>
-            <h2 class="section-title">My Tech Stack</h2>
-            <p class="section-desc">Technologies I work with daily to bring ideas to life.</p>
-            <div class="skills-grid">
-                <div class="skill-item"><span class="skill-icon">🌐</span>HTML5</div>
-                <div class="skill-item"><span class="skill-icon">🎨</span>CSS3</div>
-                <div class="skill-item"><span class="skill-icon">⚡</span>JavaScript</div>
-                <div class="skill-item"><span class="skill-icon">⚛️</span>React.js</div>
-                <div class="skill-item"><span class="skill-icon">🟢</span>Vue.js</div>
-                <div class="skill-item"><span class="skill-icon">🟡</span>Node.js</div>
-                <div class="skill-item"><span class="skill-icon">📦</span>Express</div>
-                <div class="skill-item"><span class="skill-icon">🐍</span>Python</div>
-                <div class="skill-item"><span class="skill-icon">🗄️</span>PostgreSQL</div>
-                <div class="skill-item"><span class="skill-icon">🍃</span>MongoDB</div>
-                <div class="skill-item"><span class="skill-icon">🔥</span>Firebase</div>
-                <div class="skill-item"><span class="skill-icon">🔐</span>OAuth 2.0</div>
-                <div class="skill-item"><span class="skill-icon">🔑</span>JWT</div>
-                <div class="skill-item"><span class="skill-icon">📡</span>REST APIs</div>
-                <div class="skill-item"><span class="skill-icon">📊</span>GraphQL</div>
-                <div class="skill-item"><span class="skill-icon">🐳</span>Docker</div>
-                <div class="skill-item"><span class="skill-icon">📝</span>Git</div>
-                <div class="skill-item"><span class="skill-icon">🎯</span>Figma</div>
-                <div class="skill-item"><span class="skill-icon">💨</span>Tailwind</div>
-                <div class="skill-item"><span class="skill-icon">📱</span>Responsive</div>
+        <section class="sec" id="skills">
+            <span class="sl">Skills</span>
+            <h2 class="st">My Tech Stack</h2>
+            <p class="sd">Technologies I work with daily to bring ideas to life.</p>
+            <div class="sg">
+                <div class="si"><span class="sicon">🌐</span>HTML5</div>
+                <div class="si"><span class="sicon">🎨</span>CSS3</div>
+                <div class="si"><span class="sicon">⚡</span>JavaScript</div>
+                <div class="si"><span class="sicon">⚛️</span>React.js</div>
+                <div class="si"><span class="sicon">🟢</span>Vue.js</div>
+                <div class="si"><span class="sicon">🟡</span>Node.js</div>
+                <div class="si"><span class="sicon">📦</span>Express</div>
+                <div class="si"><span class="sicon">🐍</span>Python</div>
+                <div class="si"><span class="sicon">🗄️</span>PostgreSQL</div>
+                <div class="si"><span class="sicon">🍃</span>MongoDB</div>
+                <div class="si"><span class="sicon">🔥</span>Firebase</div>
+                <div class="si"><span class="sicon">🔐</span>OAuth 2.0</div>
+                <div class="si"><span class="sicon">🔑</span>JWT</div>
+                <div class="si"><span class="sicon">📡</span>REST APIs</div>
+                <div class="si"><span class="sicon">📊</span>GraphQL</div>
+                <div class="si"><span class="sicon">🐳</span>Docker</div>
+                <div class="si"><span class="sicon">📝</span>Git</div>
+                <div class="si"><span class="sicon">🎯</span>Figma</div>
+                <div class="si"><span class="sicon">💨</span>Tailwind</div>
+                <div class="si"><span class="sicon">📱</span>Responsive</div>
             </div>
         </section>
 
-        <!-- Services -->
-        <section class="section" id="services">
-            <span class="section-label">Services</span>
-            <h2 class="section-title">What I Offer</h2>
-            <p class="section-desc">End-to-end web solutions tailored to your needs.</p>
-            <div class="services-grid">
-                <div class="service-card"><span class="icon">🎨</span><h3>UI/UX Design</h3><p>Beautiful, intuitive interfaces with modern design patterns and glassmorphism aesthetics.</p></div>
-                <div class="service-card"><span class="icon">⚡</span><h3>Frontend Development</h3><p>Responsive, animated, and accessible applications built with React, Vue, or vanilla JavaScript.</p></div>
-                <div class="service-card"><span class="icon">🔒</span><h3>Secure Auth & Backend</h3><p>Firebase Auth, OAuth 2.0, JWT — enterprise-grade authentication and API design.</p></div>
-                <div class="service-card"><span class="icon">📱</span><h3>Mobile-First Design</h3><p>Pixel-perfect responsive layouts that deliver a seamless experience on every device.</p></div>
+        <section class="sec" id="services">
+            <span class="sl">Services</span>
+            <h2 class="st">What I Offer</h2>
+            <p class="sd">End-to-end web solutions tailored to your needs.</p>
+            <div class="svg">
+                <div class="svc"><span class="ic">🎨</span><h3>UI/UX Design</h3><p>Beautiful, intuitive interfaces with modern design patterns and glassmorphism aesthetics.</p></div>
+                <div class="svc"><span class="ic">⚡</span><h3>Frontend Development</h3><p>Responsive, animated, and accessible applications built with React, Vue, or vanilla JavaScript.</p></div>
+                <div class="svc"><span class="ic">🔒</span><h3>Secure Auth & Backend</h3><p>Firebase Auth, OAuth 2.0, JWT — enterprise-grade authentication and API design.</p></div>
+                <div class="svc"><span class="ic">📱</span><h3>Mobile-First Design</h3><p>Pixel-perfect responsive layouts that deliver a seamless experience on every device.</p></div>
             </div>
         </section>
 
-        <!-- Experience -->
-        <section class="section" id="experience">
-            <span class="section-label">Experience</span>
-            <h2 class="section-title">Where I've Worked</h2>
-            <p class="section-desc">A timeline of my professional journey.</p>
-            <div class="timeline">
-                <div class="timeline-item"><div class="year">2024 - Present</div><h4>Senior Web Developer</h4><div class="company">TechVentures Inc.</div><p>Lead development of scalable web apps serving 100K+ users. Architected authentication systems and mentored junior developers.</p></div>
-                <div class="timeline-item"><div class="year">2022 - 2024</div><h4>Full-Stack Developer</h4><div class="company">Digital Agency Co.</div><p>Built custom web solutions for 20+ clients. Specialized in React/Node.js stacks and Firebase integration.</p></div>
-                <div class="timeline-item"><div class="year">2020 - 2022</div><h4>Junior Web Developer</h4><div class="company">StartupLab</div><p>Developed responsive websites and interactive features. Gained expertise in modern CSS, JavaScript frameworks, and REST APIs.</p></div>
+        <section class="sec" id="experience">
+            <span class="sl">Experience</span>
+            <h2 class="st">Where I've Worked</h2>
+            <p class="sd">A timeline of my professional journey.</p>
+            <div class="tl">
+                <div class="tli"><div class="yr">2024 - Present</div><h4>Senior Web Developer</h4><div class="co">TechVentures Inc.</div><p>Lead development of scalable web apps serving 100K+ users. Architected authentication systems.</p></div>
+                <div class="tli"><div class="yr">2022 - 2024</div><h4>Full-Stack Developer</h4><div class="co">Digital Agency Co.</div><p>Built custom web solutions for 20+ clients. Specialized in React/Node.js and Firebase.</p></div>
+                <div class="tli"><div class="yr">2020 - 2022</div><h4>Junior Web Developer</h4><div class="co">StartupLab</div><p>Developed responsive websites and interactive features. Gained expertise in modern JS frameworks.</p></div>
             </div>
         </section>
 
-        <!-- Projects -->
-        <section class="section" id="projects">
-            <span class="section-label">Portfolio</span>
-            <h2 class="section-title">Featured Projects</h2>
-            <p class="section-desc">A selection of my recent work showcasing design and engineering excellence.</p>
-            <div class="projects-grid">
-                <div class="project-card"><div class="project-img">🛒</div><div class="project-body"><h3>E-Commerce Platform</h3><p>Full-stack store with Firebase Auth, cart management, Stripe payments, and admin dashboard.</p><div class="project-tags"><span>React</span><span>Node.js</span><span>Stripe</span></div></div></div>
-                <div class="project-card"><div class="project-img">📊</div><div class="project-body"><h3>Analytics Dashboard</h3><p>Real-time data visualization with OAuth-secured multi-tenant access and Firebase backend.</p><div class="project-tags"><span>Vue.js</span><span>Firebase</span><span>Chart.js</span></div></div></div>
-                <div class="project-card"><div class="project-img">🏥</div><div class="project-body"><h3>HealthTech Portal</h3><p>Secure patient portal with email verification, role-based access, and appointment scheduling.</p><div class="project-tags"><span>Next.js</span><span>Firebase</span><span>OAuth 2.0</span></div></div></div>
+        <section class="sec" id="projects">
+            <span class="sl">Portfolio</span>
+            <h2 class="st">Featured Projects</h2>
+            <p class="sd">A selection of my recent work showcasing design and engineering excellence.</p>
+            <div class="pg">
+                <div class="pc"><div class="pimg">🛒</div><div class="pb"><h3>E-Commerce Platform</h3><p>Full-stack store with Firebase Auth, cart, payments, and admin dashboard.</p><div class="pt"><span>React</span><span>Node.js</span><span>Stripe</span></div></div></div>
+                <div class="pc"><div class="pimg">📊</div><div class="pb"><h3>Analytics Dashboard</h3><p>Real-time data visualization with OAuth-secured multi-tenant access and Firebase.</p><div class="pt"><span>Vue.js</span><span>Firebase</span><span>Chart.js</span></div></div></div>
+                <div class="pc"><div class="pimg">🏥</div><div class="pb"><h3>HealthTech Portal</h3><p>Secure patient portal with email verification, role-based access, and appointment scheduling.</p><div class="pt"><span>Next.js</span><span>Firebase</span><span>OAuth 2.0</span></div></div></div>
             </div>
         </section>
 
-        <!-- Contact -->
-        <section class="section" id="contact">
-            <span class="section-label">Contact</span>
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-desc">Have a project in mind? Let's talk about it.</p>
-            <div class="contact-grid">
-                <div>
+        <section class="sec" id="contact">
+            <span class="sl">Contact</span>
+            <h2 class="st">Get In Touch</h2>
+            <p class="sd">Have a project in mind? Let's talk about it.</p>
+            <div class="cg">
+                <div class="ci">
                     <h3>Let's build something amazing</h3>
-                    <p>I'm always open to new opportunities, collaborations, and creative challenges. Reach out and let's make it happen.</p>
-                    <div class="contact-detail"><div class="cd-icon">✉️</div><div class="cd-text"><strong>Email</strong><span>ilyas@example.com</span></div></div>
-                    <div class="contact-detail"><div class="cd-icon">📍</div><div class="cd-text"><strong>Location</strong><span>Nairobi, Kenya</span></div></div>
-                    <div class="contact-detail"><div class="cd-icon">📱</div><div class="cd-text"><strong>Phone</strong><span>+254 700 000 000</span></div></div>
+                    <p>I'm always open to new opportunities, collaborations, and creative challenges.</p>
+                    <div class="cd"><div class="cdi">✉️</div><div class="cdt"><strong>Email</strong><span>ilyas@example.com</span></div></div>
+                    <div class="cd"><div class="cdi">📍</div><div class="cdt"><strong>Location</strong><span>Nairobi, Kenya</span></div></div>
+                    <div class="cd"><div class="cdi">📱</div><div class="cdt"><strong>Phone</strong><span>+254 700 000 000</span></div></div>
                 </div>
-                <div>
+                <div class="cf">
                     <form id="contactForm" onsubmit="handleContact(event)">
-                        <div class="form-group"><label>Your Name</label><input type="text" id="contactName" placeholder="John Doe" required /></div>
-                        <div class="form-group"><label>Your Email</label><input type="email" id="contactEmail" placeholder="john@example.com" required /></div>
-                        <div class="form-group"><label>Message</label><textarea id="contactMessage" placeholder="Tell me about your project..." required></textarea></div>
-                        <button class="btn-submit" type="submit">Send Message ✈️</button>
+                        <div class="fg"><label>Your Name</label><input type="text" id="contactName" placeholder="John Doe" required /></div>
+                        <div class="fg"><label>Your Email</label><input type="email" id="contactEmail" placeholder="john@example.com" required /></div>
+                        <div class="fg"><label>Message</label><textarea id="contactMessage" placeholder="Tell me about your project..." required></textarea></div>
+                        <button class="btn" type="submit">Send Message ✈️</button>
                     </form>
-                    <div id="contactSuccess" style="display:none;margin-top:12px;padding:12px;border-radius:var(--radius-sm);background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);color:#4ADE80;text-align:center;font-size:14px;">✅ Message sent successfully! I'll get back to you soon.</div>
+                    <div id="contactOk" style="display:none;margin-top:12px;padding:12px;border-radius:8px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);color:#4ADE80;text-align:center;font-size:14px;">✅ Message sent! I'll get back to you soon.</div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
         <footer>
-            <div class="footer-content">
-                <div class="footer-brand">Ilyas <span>Abdi Ali</span></div>
-                <div class="footer-socials">
-                    <a href="#" title="GitHub">🐙</a>
-                    <a href="#" title="LinkedIn">💼</a>
-                    <a href="#" title="Twitter">🐦</a>
-                    <a href="#" title="Dribbble">🏀</a>
-                    <a href="#" title="Email">✉️</a>
+            <div class="fc">
+                <div class="fb">Ilyas <span>Abdi Ali</span></div>
+                <div class="fsocial">
+                    <a href="#">🐙</a><a href="#">💼</a><a href="#">🐦</a><a href="#">🏀</a><a href="#">✉️</a>
                 </div>
-                <div class="footer-copy">&copy; <span id="year"></span> Ilyas Abdi Ali — Web Development Designer. All rights reserved.</div>
+                <div class="fcopy">&copy; <span id="year"></span> Ilyas Abdi Ali — Web Development Designer. All rights reserved.</div>
             </div>
         </footer>
     </div>
 
-    <!-- ============================================
-    FIREBASE SDK + APPLICATION LOGIC
-    ============================================ -->
+    <!-- ============ FIREBASE + JS ============ -->
     <script type="module">
-        // ----- FIREBASE IMPORTS -----
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
         import {
             getAuth, GoogleAuthProvider, signInWithPopup,
@@ -727,71 +533,63 @@
             onAuthStateChanged, setPersistence, browserLocalPersistence, updateProfile
         } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
 
-        // ----- 🔥 FIREBASE CONFIG — REPLACE WITH YOUR OWN 🔥 -----
+        // 🔥 REPLACE WITH YOUR FIREBASE CONFIG 🔥
         const firebaseConfig = {
-            apiKey: "BFSWV2egu4XbYytIB3kd0C6NfLcYm09P6oWRozasiyYWC2Mp-zYsdNHq-27wxXDQbekokgCwGpCwf9uIJ3Qg4Y4",
+            apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_PROJECT.firebaseapp.com",
-            projectId: "elaborate-tube-498810-p9",
+            projectId: "YOUR_PROJECT_ID",
             storageBucket: "YOUR_PROJECT.appspot.com",
-            messagingSenderId: "1076286184823",
+            messagingSenderId: "YOUR_SENDER_ID",
             appId: "YOUR_APP_ID"
         };
 
-        // ----- INIT FIREBASE -----
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        const googleProvider = new GoogleAuthProvider();
+        const provider = new GoogleAuthProvider();
 
-        // Persist auth state (remembers logged-in users across refreshes)
         await setPersistence(auth, browserLocalPersistence);
 
-        // ----- DOM HELPERS -----
+        // Shortcuts
         const $ = id => document.getElementById(id);
-        const authLoading = $('authLoading');
+        const loading = $('loading');
         const authPage = $('authPage');
         const forgotPage = $('forgotPage');
-        const portfolioPage = $('portfolioPage');
-        const notif = $('authNotification');
-        const forgotNotif = $('forgotNotification');
+        const portPage = $('portPage');
+        const notif = $('notif');
+        const forgotNotif = $('forgotNotif');
 
-        function showNotif(el, msg, type) {
-            el.textContent = msg;
-            el.className = 'auth-notification ' + type + ' show';
-        }
-        function clearNotif(el) { el.textContent = ''; el.className = 'auth-notification'; }
-        function clearErrors() { document.querySelectorAll('.form-group.error').forEach(g => g.classList.remove('error')); }
+        function showNotif(el, msg, type) { el.textContent = msg; el.className = 'notif ' + type + ' show'; }
+        function clearNotif(el) { el.textContent = ''; el.className = 'notif'; }
+        function clearErrors() { document.querySelectorAll('.fg.err').forEach(g => g.classList.remove('err')); }
 
         function showPage(page) {
-            [authPage, forgotPage, portfolioPage].forEach(p => p.classList.remove('active'));
+            [authPage, forgotPage, portPage].forEach(p => p.classList.remove('active'));
             page.classList.add('active');
         }
 
-        function setLoading(btn, loading) {
+        function setLoadingBtn(btn, loading) {
             if (loading) {
                 btn.disabled = true;
-                btn.innerHTML = '<span class="spinner"></span> Loading...';
+                btn.innerHTML = '<span class="spinner-sm"></span> Loading...';
             } else {
                 btn.disabled = false;
-                btn.textContent = btn.dataset.originalText || 'Submit';
+                btn.textContent = btn.dataset.orig || 'Submit';
             }
         }
 
-        // Save original button texts
-        document.querySelectorAll('.btn-submit').forEach(b => {
-            if (!b.dataset.originalText) b.dataset.originalText = b.textContent;
-        });
+        document.querySelectorAll('.btn').forEach(b => { if (!b.dataset.orig) b.dataset.orig = b.textContent; });
 
-        // ----- TAB SWITCHING -----
-        document.querySelectorAll('.auth-tab').forEach(tab => {
+        // Tabs
+        document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', function() {
-                document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                document.querySelectorAll('.auth-form-container').forEach(f => f.classList.remove('active'));
-                $(this.dataset.tab + 'FormContainer').classList.add('active');
+                document.querySelectorAll('.form-box').forEach(f => f.classList.remove('show'));
+                $(this.dataset.tab + 'Form').classList.add('show');
                 clearNotif(notif);
                 clearErrors();
                 const h1 = document.querySelector('.auth-card h1');
-                const sub = document.querySelector('.auth-card .auth-subtitle');
+                const sub = document.querySelector('.auth-card .sub');
                 if (this.dataset.tab === 'login') {
                     h1.textContent = 'Welcome Back';
                     sub.textContent = 'Sign in to access your portfolio dashboard';
@@ -802,218 +600,171 @@
             });
         });
 
-        // ----- PASSWORD TOGGLE -----
-        window.toggleField = function(id, btn) {
+        // Password toggle
+        window.togglePW = function(id, btn) {
             const inp = $(id);
             inp.type = inp.type === 'password' ? 'text' : 'password';
             btn.textContent = inp.type === 'password' ? '👁️' : '🙈';
         };
 
-        // ----- GOOGLE SIGN-IN -----
+        // Google
         $('googleBtn').addEventListener('click', async () => {
             try {
-                await signInWithPopup(auth, googleProvider);
-                // handled by onAuthStateChanged
+                await signInWithPopup(auth, provider);
             } catch (err) {
-                showNotif(notif, err.message, 'error');
+                showNotif(notif, err.message, 'err');
             }
         });
 
-        // ----- EMAIL LOGIN -----
+        // Login
         window.handleLogin = async function() {
-            clearErrors();
-            clearNotif(notif);
+            clearErrors(); clearNotif(notif);
             const email = $('loginEmail').value.trim();
-            const pass = $('loginPassword').value;
-            let valid = true;
-            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $('loginEmailGroup').classList.add('error'); valid = false; }
-            if (!pass || pass.length < 6) { $('loginPasswordGroup').classList.add('error'); valid = false; }
-            if (!valid) return;
+            const pass = $('loginPass').value;
+            let ok = true;
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $('loginEmailG').classList.add('err'); ok = false; }
+            if (!pass || pass.length < 6) { $('loginPassG').classList.add('err'); ok = false; }
+            if (!ok) return;
 
-            const btn = $('loginSubmitBtn');
-            setLoading(btn, true);
+            const btn = $('loginBtn');
+            setLoadingBtn(btn, true);
             try {
                 await signInWithEmailAndPassword(auth, email, pass);
-                setLoading(btn, false);
+                setLoadingBtn(btn, false);
             } catch (err) {
-                setLoading(btn, false);
-                if (err.code === 'auth/user-not-found') {
-                    showNotif(notif, 'No account found with this email. Please register.', 'error');
-                    $('loginEmailGroup').classList.add('error');
+                setLoadingBtn(btn, false);
+                if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-email') {
+                    showNotif(notif, 'No account found with this email.', 'err');
+                    $('loginEmailG').classList.add('err');
                 } else if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
-                    showNotif(notif, 'Incorrect password. Please try again.', 'error');
-                    $('loginPasswordGroup').classList.add('error');
+                    showNotif(notif, 'Incorrect password.', 'err');
+                    $('loginPassG').classList.add('err');
                 } else {
-                    showNotif(notif, err.message, 'error');
+                    showNotif(notif, err.message, 'err');
                 }
             }
         };
 
-        // ----- EMAIL REGISTER -----
+        // Register
         window.handleRegister = async function() {
-            clearErrors();
-            clearNotif(notif);
+            clearErrors(); clearNotif(notif);
             const name = $('regName').value.trim();
             const email = $('regEmail').value.trim();
-            const pass = $('regPassword').value;
+            const pass = $('regPass').value;
             const confirm = $('regConfirm').value;
-            let valid = true;
-            if (!name || name.length < 2) { $('regNameGroup').classList.add('error'); valid = false; }
-            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $('regEmailGroup').classList.add('error'); valid = false; }
-            if (!pass || pass.length < 6) { $('regPasswordGroup').classList.add('error'); valid = false; }
-            if (pass !== confirm) { $('regConfirmGroup').classList.add('error'); valid = false; }
-            if (!valid) return;
+            let ok = true;
+            if (!name || name.length < 2) { $('regNameG').classList.add('err'); ok = false; }
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $('regEmailG').classList.add('err'); ok = false; }
+            if (!pass || pass.length < 6) { $('regPassG').classList.add('err'); ok = false; }
+            if (pass !== confirm) { $('regConfirmG').classList.add('err'); ok = false; }
+            if (!ok) return;
 
-            const btn = $('registerSubmitBtn');
-            setLoading(btn, true);
+            const btn = $('regBtn');
+            setLoadingBtn(btn, true);
             try {
                 const cred = await createUserWithEmailAndPassword(auth, email, pass);
                 await updateProfile(cred.user, { displayName: name });
                 await sendEmailVerification(cred.user);
-                showNotif(notif, 'Account created! Verification email sent to ' + email, 'success');
-                setLoading(btn, false);
+                showNotif(notif, 'Account created! Verification email sent to ' + email, 'ok');
+                setLoadingBtn(btn, false);
             } catch (err) {
-                setLoading(btn, false);
+                setLoadingBtn(btn, false);
                 if (err.code === 'auth/email-already-in-use') {
-                    showNotif(notif, 'An account with this email already exists.', 'error');
-                    $('regEmailGroup').classList.add('error');
+                    showNotif(notif, 'An account with this email already exists.', 'err');
+                    $('regEmailG').classList.add('err');
                 } else {
-                    showNotif(notif, err.message, 'error');
+                    showNotif(notif, err.message, 'err');
                 }
             }
         };
 
-        // ----- FORGOT PASSWORD -----
-        window.showForgot = function() {
-            clearNotif(notif);
-            showPage(forgotPage);
-        };
-        window.backToAuth = function() {
-            clearNotif(forgotNotif);
-            showPage(authPage);
-        };
+        // Forgot
+        window.showForgot = function() { clearNotif(notif); showPage(forgotPage); };
+        window.backToAuth = function() { clearNotif(forgotNotif); showPage(authPage); };
         window.handleForgot = async function() {
-            clearErrors();
-            clearNotif(forgotNotif);
+            clearErrors(); clearNotif(forgotNotif);
             const email = $('forgotEmail').value.trim();
-            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                $('forgotEmailGroup').classList.add('error');
-                return;
-            }
-            const btn = $('forgotSubmitBtn');
-            setLoading(btn, true);
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $('forgotEmailG').classList.add('err'); return; }
+            const btn = $('forgotBtn');
+            setLoadingBtn(btn, true);
             try {
                 await sendPasswordResetEmail(auth, email);
-                showNotif(forgotNotif, 'Password reset link sent to your email.', 'success');
-                setLoading(btn, false);
+                showNotif(forgotNotif, 'Password reset link sent to your email.', 'ok');
+                setLoadingBtn(btn, false);
             } catch (err) {
-                setLoading(btn, false);
-                if (err.code === 'auth/user-not-found') {
-                    showNotif(forgotNotif, 'No account found with this email.', 'error');
-                    $('forgotEmailGroup').classList.add('error');
-                } else {
-                    showNotif(forgotNotif, err.message, 'error');
-                }
+                setLoadingBtn(btn, false);
+                showNotif(forgotNotif, err.message, 'err');
             }
         };
 
-        // ----- LOGOUT -----
-        $('logoutBtn').addEventListener('click', async () => {
-            try {
-                await signOut(auth);
-            } catch (err) { console.error(err); }
-        });
+        // Logout
+        $('logoutBtn').addEventListener('click', async () => { try { await signOut(auth); } catch(e) {} });
 
-        // ----- CONTACT FORM -----
+        // Contact
         window.handleContact = function(e) {
             e.preventDefault();
-            $('contactSuccess').style.display = 'block';
+            $('contactOk').style.display = 'block';
             $('contactForm').reset();
-            setTimeout(() => $('contactSuccess').style.display = 'none', 4000);
+            setTimeout(() => $('contactOk').style.display = 'none', 4000);
         };
 
-        // ----- RESUME DOWNLOAD -----
-        window.downloadResume = function() {
-            alert('Resume download would start here. Upload your PDF and update the link.');
-        };
+        // Resume
+        window.downloadResume = function() { alert('Upload your PDF and update the download link.'); };
 
-        // ----- FOOTER YEAR -----
+        // Year
         $('year').textContent = new Date().getFullYear();
 
-        // ----- AUTH STATE LISTENER -----
+        // Auth state listener
         onAuthStateChanged(auth, (user) => {
-            authLoading.classList.add('hidden');
-
+            loading.classList.add('hide');
             if (user) {
-                // Show portfolio
-                showPage(portfolioPage);
-
-                // Update navbar with user info
+                showPage(portPage);
                 if (user.photoURL) {
                     $('userAvatar').src = user.photoURL;
                     $('userAvatar').style.display = 'block';
-                    $('userInitials').style.display = 'none';
+                    $('userInit').style.display = 'none';
                 } else {
                     $('userAvatar').style.display = 'none';
-                    $('userInitials').style.display = 'flex';
-                    const initials = (user.displayName || 'U')
-                        .split(' ')
-                        .map(w => w[0])
-                        .join('')
-                        .toUpperCase()
-                        .slice(0, 2) || 'U';
-                    $('userInitials').textContent = initials;
+                    $('userInit').style.display = 'flex';
+                    $('userInit').textContent = (user.displayName || 'U').split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2) || 'U';
                 }
                 $('userName').textContent = user.displayName || 'User';
                 $('userEmail').textContent = user.email || '';
             } else {
-                // Show auth page
                 showPage(authPage);
             }
         });
 
-        // ----- NAVBAR SCROLL EFFECT -----
+        // Scroll
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.navbar');
-            if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+            document.querySelector('.navbar')?.classList.toggle('scroll', window.scrollY > 40);
         }, { passive: true });
 
-        // ----- INTERSECTION OBSERVER FOR ANIMATIONS -----
-        const observer =
-            // ----- INTERSECTION OBSERVER FOR ANIMATIONS -----
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.visibility = 'visible';
-                    const cls = entry.target.dataset.anim || 'animate-fade-in-up';
-                    entry.target.classList.add(cls);
-                    observer.unobserve(entry.target);
+        // Observer
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.visibility = 'visible';
+                    e.target.classList.add(e.target.dataset.anim || 'anim-up');
+                    obs.unobserve(e.target);
                 }
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('#portfolioPage .animate-fade-in-up, #portfolioPage .animate-scale-in').forEach(el => {
-            const cls = Array.from(el.classList).find(c => c.startsWith('animate-'));
-            if (cls) {
-                el.dataset.anim = cls;
-                el.classList.remove(cls);
-                el.style.visibility = 'hidden';
-                observer.observe(el);
-            }
+        document.querySelectorAll('#portPage .anim-up, #portPage .anim-scale').forEach(el => {
+            const cls = Array.from(el.classList).find(c => c.startsWith('anim-'));
+            if (cls) { el.dataset.anim = cls; el.classList.remove(cls); el.style.visibility = 'hidden'; obs.observe(el); }
         });
 
-        // ----- SMOOTH SCROLL FOR ANCHOR LINKS -----
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                const t = document.querySelector(this.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
             });
         });
 
-        console.log('✅ Firebase Portfolio loaded successfully');
+        console.log('✅ Firebase Portfolio ready');
     </script>
 </body>
 </html>
