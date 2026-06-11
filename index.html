@@ -51,19 +51,10 @@
         /* ============================================
            SCROLLBAR
         ============================================ */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--black-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--orange-primary);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--orange-dark);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--black-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--orange-primary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--orange-dark); }
 
         /* ============================================
            GLASSMORPHISM UTILITY
@@ -80,55 +71,41 @@
            ANIMATIONS
         ============================================ */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.92);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
         }
-
         @keyframes pulseGlow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(255, 107, 0, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(255, 107, 0, 0.5);
-            }
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 0, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(255, 107, 0, 0.5); }
         }
-
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-8px); }
+            40% { transform: translateX(8px); }
+            60% { transform: translateX(-5px); }
+            80% { transform: translateX(5px); }
+        }
 
-        .animate-fade-in-up {
-            animation: fadeInUp 0.7s ease forwards;
-        }
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease forwards;
-        }
-        .animate-scale-in {
-            animation: scaleIn 0.5s ease forwards;
-        }
+        .animate-fade-in-up { animation: fadeInUp 0.7s ease forwards; }
+        .animate-fade-in { animation: fadeIn 0.5s ease forwards; }
+        .animate-scale-in { animation: scaleIn 0.5s ease forwards; }
+        .shake { animation: shake 0.4s ease; }
 
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.2s; }
@@ -139,16 +116,11 @@
         /* ============================================
            PAGE SECTIONS
         ============================================ */
-        .page {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        .page.active {
-            display: block;
-        }
+        .page { display: none; animation: fadeIn 0.5s ease; }
+        .page.active { display: block; }
 
         /* ============================================
-           LOGIN PAGE
+           LOGIN / REGISTER PAGE
         ============================================ */
         #loginPage {
             min-height: 100vh;
@@ -166,38 +138,28 @@
             height: 100%;
             pointer-events: none;
         }
-
         #loginPage .orb {
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
             opacity: 0.15;
         }
-
         #loginPage .orb-1 {
-            width: 400px;
-            height: 400px;
+            width: 400px; height: 400px;
             background: var(--orange-primary);
-            top: -10%;
-            left: -5%;
+            top: -10%; left: -5%;
             animation: float 8s ease-in-out infinite;
         }
-
         #loginPage .orb-2 {
-            width: 350px;
-            height: 350px;
+            width: 350px; height: 350px;
             background: var(--orange-dark);
-            bottom: -10%;
-            right: -5%;
+            bottom: -10%; right: -5%;
             animation: float 10s ease-in-out infinite reverse;
         }
-
         #loginPage .orb-3 {
-            width: 250px;
-            height: 250px;
+            width: 250px; height: 250px;
             background: var(--orange-light);
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             animation: float 12s ease-in-out infinite;
         }
@@ -206,25 +168,25 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 440px;
+            max-width: 460px;
             padding: 20px;
         }
 
         .login-card {
-            padding: 48px 40px;
+            padding: 40px 36px;
             border-radius: var(--radius-lg);
             text-align: center;
             animation: scaleIn 0.6s ease;
         }
 
         .login-card .logo-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
+            font-size: 42px;
+            margin-bottom: 12px;
             display: block;
         }
 
         .login-card h1 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
             margin-bottom: 4px;
             background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
@@ -235,92 +197,227 @@
 
         .login-card .subtitle {
             color: var(--text-secondary);
-            font-size: 15px;
-            margin-bottom: 32px;
+            font-size: 14px;
+            margin-bottom: 24px;
             font-weight: 400;
         }
 
-        .login-card .divider {
+        /* --- Tabs --- */
+        .auth-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 24px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 12px 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .auth-tab.active {
+            background: rgba(255, 107, 0, 0.12);
+            color: var(--orange-primary);
+        }
+
+        .auth-tab:hover:not(.active) {
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* --- Forms --- */
+        .auth-form {
+            display: none;
+            text-align: left;
+        }
+        .auth-form.active {
+            display: block;
+            animation: slideDown 0.35s ease;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: var(--font);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            border-color: var(--orange-primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.08);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group .error-text {
+            font-size: 12px;
+            color: #FF4444;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group.error input {
+            border-color: #FF4444;
+        }
+        .form-group.error .error-text {
+            display: block;
+        }
+
+        .form-group .password-wrapper {
+            position: relative;
+        }
+
+        .form-group .password-toggle {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .form-group .password-toggle:hover {
+            color: var(--text-secondary);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--orange-primary), var(--orange-dark));
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 4px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.25);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-divider {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 28px;
+            margin: 20px 0;
             color: var(--text-muted);
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
-        .login-card .divider::before,
-        .login-card .divider::after {
+        .auth-divider::before,
+        .auth-divider::after {
             content: '';
             flex: 1;
             height: 1px;
             background: var(--glass-border);
         }
 
-        /* Google Sign-In Button */
         .g-sign-in-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 14px;
             width: 100%;
-            padding: 16px 24px;
+            padding: 14px 24px;
             border: 1px solid var(--glass-border);
-            border-radius: var(--radius-md);
-            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.04);
             color: var(--text-primary);
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             font-family: var(--font);
             cursor: pointer;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .g-sign-in-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, transparent, rgba(255, 107, 0, 0.08));
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .g-sign-in-btn:hover::before {
-            opacity: 1;
         }
 
         .g-sign-in-btn:hover {
             border-color: var(--orange-primary);
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.15);
-        }
-
-        .g-sign-in-btn:active {
-            transform: translateY(0);
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.12);
         }
 
         .g-sign-in-btn svg {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             flex-shrink: 0;
         }
 
-        .login-card .footer-text {
-            margin-top: 24px;
+        .auth-message {
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
             font-size: 13px;
+            display: none;
+        }
+        .auth-message.error {
+            display: block;
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid rgba(255, 68, 68, 0.25);
+            color: #FF6666;
+        }
+        .auth-message.success {
+            display: block;
+            background: rgba(68, 255, 68, 0.08);
+            border: 1px solid rgba(68, 255, 68, 0.2);
+            color: #66FF66;
+        }
+
+        .login-card .footer-text {
+            margin-top: 18px;
+            font-size: 12px;
             color: var(--text-muted);
         }
-
-        .login-card .footer-text span {
-            color: var(--orange-primary);
-        }
+        .login-card .footer-text span { color: var(--orange-primary); }
 
         /* ============================================
-           DASHBOARD / PORTFOLIO PAGE
+           DASHBOARD / PORTFOLIO
         ============================================ */
         #dashboardPage {
             min-height: 100vh;
@@ -340,15 +437,12 @@
             justify-content: space-between;
             transition: var(--transition);
         }
-
         .navbar.scrolled {
             background: rgba(13, 13, 13, 0.85);
             backdrop-filter: blur(20px) saturate(1.6);
-            -webkit-backdrop-filter: blur(20px) saturate(1.6);
             border-bottom: 1px solid var(--glass-border);
             padding: 10px 32px;
         }
-
         .navbar .brand {
             display: flex;
             align-items: center;
@@ -358,22 +452,18 @@
             color: var(--text-primary);
             text-decoration: none;
         }
-
         .navbar .brand .brand-dot {
-            width: 10px;
-            height: 10px;
+            width: 10px; height: 10px;
             background: var(--orange-primary);
             border-radius: 50%;
             display: inline-block;
             animation: pulseGlow 2s infinite;
         }
-
         .navbar .nav-right {
             display: flex;
             align-items: center;
             gap: 20px;
         }
-
         .navbar .user-info {
             display: flex;
             align-items: center;
@@ -384,32 +474,39 @@
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(12px);
         }
-
         .navbar .user-avatar {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--orange-primary);
         }
-
         .navbar .user-details {
             display: flex;
             flex-direction: column;
             line-height: 1.3;
         }
-
         .navbar .user-name {
             font-size: 13px;
             font-weight: 600;
             color: var(--text-primary);
         }
-
         .navbar .user-email {
             font-size: 11px;
             color: var(--text-muted);
         }
-
+        .user-initials {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--orange-primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            border: 2px solid var(--orange-primary);
+            flex-shrink: 0;
+        }
         .logout-btn {
             padding: 8px 18px;
             border: 1px solid rgba(255, 107, 0, 0.3);
@@ -422,14 +519,13 @@
             cursor: pointer;
             transition: var(--transition);
         }
-
         .logout-btn:hover {
             background: rgba(255, 107, 0, 0.12);
             border-color: var(--orange-primary);
             transform: translateY(-1px);
         }
 
-        /* --- Hero Section --- */
+        /* --- Hero --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -439,45 +535,35 @@
             position: relative;
             overflow: hidden;
         }
-
         .hero-bg-orbs {
             position: absolute;
             inset: 0;
             pointer-events: none;
         }
-
         .hero-bg-orbs .orb {
             position: absolute;
             border-radius: 50%;
             filter: blur(100px);
             opacity: 0.1;
         }
-
         .hero-bg-orbs .orb-a {
-            width: 500px;
-            height: 500px;
+            width: 500px; height: 500px;
             background: var(--orange-primary);
-            top: -20%;
-            right: -10%;
+            top: -20%; right: -10%;
             animation: float 12s ease-in-out infinite;
         }
-
         .hero-bg-orbs .orb-b {
-            width: 400px;
-            height: 400px;
+            width: 400px; height: 400px;
             background: var(--orange-dark);
-            bottom: -15%;
-            left: -8%;
+            bottom: -15%; left: -8%;
             animation: float 14s ease-in-out infinite reverse;
         }
-
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
             max-width: 800px;
         }
-
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -491,15 +577,12 @@
             margin-bottom: 24px;
             animation: fadeInUp 0.6s ease;
         }
-
         .hero-badge .dot {
-            width: 6px;
-            height: 6px;
+            width: 6px; height: 6px;
             background: var(--orange-primary);
             border-radius: 50%;
             animation: pulseGlow 2s infinite;
         }
-
         .hero h1 {
             font-size: clamp(40px, 7vw, 72px);
             font-weight: 800;
@@ -507,14 +590,12 @@
             margin-bottom: 20px;
             animation: fadeInUp 0.7s ease 0.1s both;
         }
-
         .hero h1 .highlight {
             background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .hero p {
             font-size: clamp(16px, 2vw, 20px);
             color: var(--text-secondary);
@@ -523,7 +604,6 @@
             margin: 0 auto 36px;
             animation: fadeInUp 0.7s ease 0.2s both;
         }
-
         .hero-cta {
             display: flex;
             align-items: center;
@@ -532,7 +612,6 @@
             flex-wrap: wrap;
             animation: fadeInUp 0.7s ease 0.3s both;
         }
-
         .btn-primary {
             padding: 16px 36px;
             border: none;
@@ -549,12 +628,10 @@
             align-items: center;
             gap: 8px;
         }
-
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 40px rgba(255, 107, 0, 0.3);
         }
-
         .btn-secondary {
             padding: 16px 36px;
             border: 1px solid var(--glass-border);
@@ -571,20 +648,18 @@
             align-items: center;
             gap: 8px;
         }
-
         .btn-secondary:hover {
             border-color: var(--orange-primary);
             background: rgba(255, 107, 0, 0.06);
             transform: translateY(-3px);
         }
 
-        /* --- About / Services Section --- */
+        /* --- Sections --- */
         .section {
             padding: 100px 32px;
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .section-label {
             display: inline-block;
             font-size: 13px;
@@ -594,13 +669,11 @@
             font-weight: 600;
             margin-bottom: 12px;
         }
-
         .section-title {
             font-size: clamp(30px, 4vw, 48px);
             font-weight: 700;
             margin-bottom: 16px;
         }
-
         .section-desc {
             color: var(--text-secondary);
             font-size: 17px;
@@ -614,7 +687,6 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
         }
-
         .service-card {
             padding: 36px 28px;
             border-radius: var(--radius-md);
@@ -624,55 +696,31 @@
             position: relative;
             overflow: hidden;
         }
-
         .service-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 3px;
             background: linear-gradient(90deg, transparent, var(--orange-primary), transparent);
             transform: scaleX(0);
             transition: var(--transition);
         }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
+        .service-card:hover::before { transform: scaleX(1); }
         .service-card:hover {
             border-color: rgba(255, 107, 0, 0.3);
             transform: translateY(-6px);
             box-shadow: 0 12px 40px rgba(255, 107, 0, 0.06);
         }
+        .service-card .icon { font-size: 36px; margin-bottom: 16px; display: block; }
+        .service-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+        .service-card p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
 
-        .service-card .icon {
-            font-size: 36px;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .service-card h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .service-card p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* --- Skills --- */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             margin-top: 20px;
         }
-
         .skill-tag {
             padding: 10px 22px;
             border-radius: 50px;
@@ -682,7 +730,6 @@
             transition: var(--transition);
             background: rgba(255, 255, 255, 0.02);
         }
-
         .skill-tag:hover {
             border-color: var(--orange-primary);
             color: var(--orange-primary);
@@ -690,13 +737,11 @@
             transform: translateY(-2px);
         }
 
-        /* --- Featured Work --- */
         .work-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
         }
-
         .work-card {
             border-radius: var(--radius-md);
             border: 1px solid var(--glass-border);
@@ -704,13 +749,11 @@
             transition: var(--transition);
             background: rgba(255, 255, 255, 0.02);
         }
-
         .work-card:hover {
             border-color: rgba(255, 107, 0, 0.3);
             transform: translateY(-6px);
             box-shadow: 0 12px 40px rgba(255, 107, 0, 0.06);
         }
-
         .work-card .work-img {
             height: 200px;
             background: linear-gradient(135deg, var(--black-tertiary), var(--black-secondary));
@@ -720,30 +763,10 @@
             font-size: 40px;
             border-bottom: 1px solid var(--glass-border);
         }
-
-        .work-card .work-body {
-            padding: 24px;
-        }
-
-        .work-card .work-body h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .work-card .work-body p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 14px;
-        }
-
-        .work-card .work-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
+        .work-card .work-body { padding: 24px; }
+        .work-card .work-body h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+        .work-card .work-body p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 14px; }
+        .work-card .work-tags { display: flex; flex-wrap: wrap; gap: 8px; }
         .work-card .work-tags span {
             padding: 4px 12px;
             border-radius: 50px;
@@ -752,7 +775,6 @@
             font-size: 12px;
         }
 
-        /* --- Contact / Footer --- */
         .contact-card {
             padding: 48px;
             border-radius: var(--radius-lg);
@@ -762,24 +784,9 @@
             max-width: 600px;
             margin: 0 auto;
         }
-
-        .contact-card h2 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-
-        .contact-card p {
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
+        .contact-card h2 { font-size: 28px; margin-bottom: 8px; }
+        .contact-card p { color: var(--text-secondary); margin-bottom: 24px; }
+        .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
         .contact-links a {
             padding: 12px 24px;
             border-radius: 50px;
@@ -792,7 +799,6 @@
             align-items: center;
             gap: 8px;
         }
-
         .contact-links a:hover {
             border-color: var(--orange-primary);
             color: var(--orange-primary);
@@ -807,81 +813,38 @@
             color: var(--text-muted);
             font-size: 14px;
         }
-
-        footer span {
-            color: var(--orange-primary);
-        }
+        footer span { color: var(--orange-primary); }
 
         /* ============================================
            RESPONSIVE
         ============================================ */
         @media (max-width: 768px) {
-            .navbar {
-                padding: 12px 16px;
-            }
-            .navbar.scrolled {
-                padding: 8px 16px;
-            }
-            .navbar .user-details {
-                display: none;
-            }
-            .navbar .user-info {
-                padding: 4px 4px 4px 4px;
-                gap: 8px;
-            }
-            .logout-btn {
-                padding: 6px 14px;
-                font-size: 12px;
-            }
-
-            .login-card {
-                padding: 32px 24px;
-            }
-
-            .hero {
-                padding: 100px 16px 60px;
-            }
-
-            .section {
-                padding: 60px 16px;
-            }
-
-            .contact-card {
-                padding: 32px 20px;
-            }
-
+            .navbar { padding: 12px 16px; }
+            .navbar.scrolled { padding: 8px 16px; }
+            .navbar .user-details { display: none; }
+            .navbar .user-info { padding: 4px 4px 4px 4px; gap: 8px; }
+            .logout-btn { padding: 6px 14px; font-size: 12px; }
+            .login-card { padding: 28px 20px; }
+            .hero { padding: 100px 16px 60px; }
+            .section { padding: 60px 16px; }
+            .contact-card { padding: 32px 20px; }
             .services-grid,
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
+            .work-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
-            .navbar .brand {
-                font-size: 16px;
-            }
-            .navbar .brand .brand-dot {
-                width: 8px;
-                height: 8px;
-            }
-            .g-sign-in-btn {
-                font-size: 14px;
-                padding: 14px 18px;
-            }
+            .navbar .brand { font-size: 16px; }
+            .navbar .brand .brand-dot { width: 8px; height: 8px; }
+            .g-sign-in-btn { font-size: 14px; padding: 12px 16px; }
             .btn-primary,
-            .btn-secondary {
-                padding: 14px 24px;
-                font-size: 14px;
-                width: 100%;
-                justify-content: center;
-            }
+            .btn-secondary { padding: 14px 24px; font-size: 14px; width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
     <!-- ============================================
-    LOGIN PAGE
+    LOGIN / REGISTER PAGE
     ============================================ -->
     <div id="loginPage" class="page active">
         <div class="bg-orbs">
@@ -893,11 +856,70 @@
             <div class="login-card glass">
                 <span class="logo-icon">🖥️</span>
                 <h1>Welcome Back</h1>
-                <p class="subtitle">Sign in to access your portfolio dashboard</p>
+                <p class="subtitle">Sign in or create an account to continue</p>
 
-                <div class="divider">Authenticate</div>
+                <!-- Tabs -->
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Sign In</button>
+                    <button class="auth-tab" data-tab="register">Register</button>
+                </div>
 
-                <!-- Google Sign-In Button -->
+                <!-- Auth Message -->
+                <div id="authMessage" class="auth-message"></div>
+
+                <!-- Login Form -->
+                <div id="loginForm" class="auth-form active">
+                    <div class="form-group" id="loginEmailGroup">
+                        <label>Email Address</label>
+                        <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" />
+                        <div class="error-text">Please enter a valid email address</div>
+                    </div>
+                    <div class="form-group" id="loginPasswordGroup">
+                        <label>Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" />
+                            <button class="password-toggle" type="button" onclick="togglePassword('loginPassword', this)">👁️</button>
+                        </div>
+                        <div class="error-text">Password is required</div>
+                    </div>
+                    <button class="btn-submit" id="loginSubmitBtn" onclick="handleLogin()">Sign In</button>
+                </div>
+
+                <!-- Register Form -->
+                <div id="registerForm" class="auth-form">
+                    <div class="form-group" id="regNameGroup">
+                        <label>Full Name</label>
+                        <input type="text" id="regName" placeholder="Ilyas Abdi Ali" autocomplete="name" />
+                        <div class="error-text">Please enter your full name</div>
+                    </div>
+                    <div class="form-group" id="regEmailGroup">
+                        <label>Email Address</label>
+                        <input type="email" id="regEmail" placeholder="you@example.com" autocomplete="email" />
+                        <div class="error-text">Please enter a valid email address</div>
+                    </div>
+                    <div class="form-group" id="regPasswordGroup">
+                        <label>Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="regPassword" placeholder="Min. 6 characters" autocomplete="new-password" />
+                            <button class="password-toggle" type="button" onclick="togglePassword('regPassword', this)">👁️</button>
+                        </div>
+                        <div class="error-text">Password must be at least 6 characters</div>
+                    </div>
+                    <div class="form-group" id="regConfirmGroup">
+                        <label>Confirm Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="regConfirm" placeholder="Confirm your password" autocomplete="new-password" />
+                            <button class="password-toggle" type="button" onclick="togglePassword('regConfirm', this)">👁️</button>
+                        </div>
+                        <div class="error-text">Passwords do not match</div>
+                    </div>
+                    <button class="btn-submit" id="registerSubmitBtn" onclick="handleRegister()">Create Account</button>
+                </div>
+
+                <!-- Divider -->
+                <div class="auth-divider">Or continue with</div>
+
+                <!-- Google Button -->
                 <button id="googleSignInBtn" class="g-sign-in-btn">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
@@ -917,8 +939,6 @@
     DASHBOARD / PORTFOLIO PAGE
     ============================================ -->
     <div id="dashboardPage" class="page">
-
-        <!-- Navbar -->
         <nav class="navbar" id="navbar">
             <a href="#" class="brand">
                 <span class="brand-dot"></span>
@@ -926,7 +946,10 @@
             </a>
             <div class="nav-right">
                 <div class="user-info" id="userInfo">
-                    <img id="userAvatar" class="user-avatar" src="" alt="Avatar" />
+                    <div id="avatarContainer">
+                        <img id="userAvatar" class="user-avatar" src="" alt="Avatar" style="display:none;" />
+                        <div id="userInitials" class="user-initials" style="display:none;"></div>
+                    </div>
                     <div class="user-details">
                         <span class="user-name" id="userName">User</span>
                         <span class="user-email" id="userEmail">user@email.com</span>
@@ -936,7 +959,6 @@
             </div>
         </nav>
 
-        <!-- Hero -->
         <section class="hero" id="hero">
             <div class="hero-bg-orbs">
                 <div class="orb orb-a"></div>
@@ -957,24 +979,16 @@
                     Let's build something extraordinary together.
                 </p>
                 <div class="hero-cta">
-                    <a href="#work" class="btn-primary">
-                        View My Work ↓
-                    </a>
-                    <a href="#contact" class="btn-secondary">
-                        Get In Touch
-                    </a>
+                    <a href="#work" class="btn-primary">View My Work ↓</a>
+                    <a href="#contact" class="btn-secondary">Get In Touch</a>
                 </div>
             </div>
         </section>
 
-        <!-- Services -->
         <section class="section" id="services">
             <span class="section-label animate-fade-in-up">What I Do</span>
             <h2 class="section-title animate-fade-in-up delay-1">Services &amp; Expertise</h2>
-            <p class="section-desc animate-fade-in-up delay-2">
-                From concept to deployment, I deliver full-stack web solutions
-                with a focus on design, performance, and security.
-            </p>
+            <p class="section-desc animate-fade-in-up delay-2">From concept to deployment, I deliver full-stack web solutions with a focus on design, performance, and security.</p>
             <div class="services-grid">
                 <div class="service-card animate-fade-in-up delay-1">
                     <span class="icon">🎨</span>
@@ -999,13 +1013,10 @@
             </div>
         </section>
 
-        <!-- Skills -->
         <section class="section" id="skills">
             <span class="section-label animate-fade-in-up">Tech Stack</span>
             <h2 class="section-title animate-fade-in-up delay-1">Tools &amp; Technologies</h2>
-            <p class="section-desc animate-fade-in-up delay-2">
-                Always learning, always building — here's my current toolkit.
-            </p>
+            <p class="section-desc animate-fade-in-up delay-2">Always learning, always building — here's my current toolkit.</p>
             <div class="skills-container animate-fade-in-up delay-3">
                 <span class="skill-tag">HTML5 / CSS3</span>
                 <span class="skill-tag">JavaScript (ES6+)</span>
@@ -1028,24 +1039,17 @@
             </div>
         </section>
 
-        <!-- Featured Work -->
         <section class="section" id="work">
             <span class="section-label animate-fade-in-up">Portfolio</span>
             <h2 class="section-title animate-fade-in-up delay-1">Featured Projects</h2>
-            <p class="section-desc animate-fade-in-up delay-2">
-                A selection of recent work showcasing design, engineering, and attention to detail.
-            </p>
+            <p class="section-desc animate-fade-in-up delay-2">A selection of recent work showcasing design, engineering, and attention to detail.</p>
             <div class="work-grid">
                 <div class="work-card animate-fade-in-up delay-1">
                     <div class="work-img">🛒</div>
                     <div class="work-body">
                         <h3>E-Commerce Platform</h3>
                         <p>Full-stack store with Google Auth, cart, payments, and admin dashboard.</p>
-                        <div class="work-tags">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>Stripe</span>
-                        </div>
+                        <div class="work-tags"><span>React</span><span>Node.js</span><span>Stripe</span></div>
                     </div>
                 </div>
                 <div class="work-card animate-fade-in-up delay-2">
@@ -1053,11 +1057,7 @@
                     <div class="work-body">
                         <h3>Analytics Dashboard</h3>
                         <p>Real-time data visualization with OAuth-secured multi-tenant access.</p>
-                        <div class="work-tags">
-                            <span>Vue.js</span>
-                            <span>D3.js</span>
-                            <span>Firebase</span>
-                        </div>
+                        <div class="work-tags"><span>Vue.js</span><span>D3.js</span><span>Firebase</span></div>
                     </div>
                 </div>
                 <div class="work-card animate-fade-in-up delay-3">
@@ -1065,23 +1065,18 @@
                     <div class="work-body">
                         <h3>HealthTech Portal</h3>
                         <p>HIPAA-compliant patient portal with secure authentication and role management.</p>
-                        <div class="work-tags">
-                            <span>Next.js</span>
-                            <span>PostgreSQL</span>
-                            <span>OAuth 2.0</span>
-                        </div>
+                        <div class="work-tags"><span>Next.js</span><span>PostgreSQL</span><span>OAuth 2.0</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact -->
         <section class="section" id="contact">
             <div class="contact-card animate-scale-in">
                 <h2>Let's Work Together</h2>
                 <p>Have a project in mind? Reach out and let's make it happen.</p>
                 <div class="contact-links">
-                    <a href="mailto:mrilyasabdi@example.com">✉️ mrilyasabdi@example.com</a>
+                    <a href="mailto:ilyas@example.com">✉️ ilyas@example.com</a>
                     <a href="#">🔗 GitHub</a>
                     <a href="#">💼 LinkedIn</a>
                 </div>
@@ -1103,23 +1098,47 @@
             'use strict';
 
             // ============================================
-            // CONFIGURATION — UPDATED CLIENT ID
+            // CONFIGURATION
             // ============================================
-            const CLIENT_ID = '';
+            const CLIENT_ID = '198968543643-n64ma87inkhui4p337i9c358m1l7600b.apps.googleusercontent.com';
             const SESSION_KEY = 'hackerai_google_session';
+            const USERS_KEY = 'hackerai_registered_users';
 
             // ============================================
             // DOM REFS
             // ============================================
-            const loginPage      = document.getElementById('loginPage');
-            const dashboardPage  = document.getElementById('dashboardPage');
-            const googleBtn      = document.getElementById('googleSignInBtn');
-            const logoutBtn      = document.getElementById('logoutBtn');
-            const userAvatar     = document.getElementById('userAvatar');
-            const userName       = document.getElementById('userName');
-            const userEmail      = document.getElementById('userEmail');
-            const navbar         = document.getElementById('navbar');
-            const yearSpan       = document.getElementById('year');
+            const loginPage       = document.getElementById('loginPage');
+            const dashboardPage   = document.getElementById('dashboardPage');
+            const googleBtn       = document.getElementById('googleSignInBtn');
+            const logoutBtn       = document.getElementById('logoutBtn');
+            const userAvatar      = document.getElementById('userAvatar');
+            const userName        = document.getElementById('userName');
+            const userEmail       = document.getElementById('userEmail');
+            const userInitials    = document.getElementById('userInitials');
+            const navbar          = document.getElementById('navbar');
+            const yearSpan        = document.getElementById('year');
+            const authMessage     = document.getElementById('authMessage');
+
+            // Forms
+            const loginForm       = document.getElementById('loginForm');
+            const registerForm    = document.getElementById('registerForm');
+            const authTabs        = document.querySelectorAll('.auth-tab');
+
+            // Login fields
+            const loginEmail      = document.getElementById('loginEmail');
+            const loginPassword   = document.getElementById('loginPassword');
+            const loginEmailGrp   = document.getElementById('loginEmailGroup');
+            const loginPassGrp    = document.getElementById('loginPasswordGroup');
+
+            // Register fields
+            const regName         = document.getElementById('regName');
+            const regEmail        = document.getElementById('regEmail');
+            const regPassword     = document.getElementById('regPassword');
+            const regConfirm      = document.getElementById('regConfirm');
+            const regNameGrp      = document.getElementById('regNameGroup');
+            const regEmailGrp     = document.getElementById('regEmailGroup');
+            const regPassGrp      = document.getElementById('regPasswordGroup');
+            const regConfirmGrp   = document.getElementById('regConfirmGroup');
 
             // ============================================
             // FOOTER YEAR
@@ -1127,8 +1146,19 @@
             yearSpan.textContent = new Date().getFullYear();
 
             // ============================================
-            // SESSION PERSISTENCE
+            // LOCAL STORAGE HELPERS
             // ============================================
+            function getUsers() {
+                try {
+                    const data = localStorage.getItem(USERS_KEY);
+                    return data ? JSON.parse(data) : [];
+                } catch { return []; }
+            }
+
+            function saveUsers(users) {
+                localStorage.setItem(USERS_KEY, JSON.stringify(users));
+            }
+
             function getSession() {
                 try {
                     const data = localStorage.getItem(SESSION_KEY);
@@ -1147,10 +1177,26 @@
             // ============================================
             // UI HELPERS
             // ============================================
+            function showAuthMessage(text, type) {
+                authMessage.textContent = text;
+                authMessage.className = 'auth-message ' + type;
+            }
+
+            function clearAuthMessage() {
+                authMessage.textContent = '';
+                authMessage.className = 'auth-message';
+            }
+
+            function clearErrors() {
+                document.querySelectorAll('.form-group.error').forEach(el => el.classList.remove('error'));
+            }
+
             function showLoginPage() {
                 loginPage.classList.add('active');
                 dashboardPage.classList.remove('active');
                 document.title = 'Sign In | Ilyas Abdi Ali';
+                clearAuthMessage();
+                clearErrors();
             }
 
             function showDashboard(user) {
@@ -1158,20 +1204,190 @@
                 dashboardPage.classList.add('active');
                 document.title = 'Dashboard | Ilyas Abdi Ali';
 
-                // Populate navbar
-                userAvatar.src = user.picture || '';
-                userAvatar.alt = user.name || 'User';
+                if (user.picture) {
+                    userAvatar.src = user.picture;
+                    userAvatar.style.display = 'block';
+                    userInitials.style.display = 'none';
+                } else {
+                    userAvatar.style.display = 'none';
+                    userInitials.style.display = 'flex';
+                    userInitials.textContent = getInitials(user.name || 'U');
+                }
+
                 userName.textContent = user.name || 'User';
                 userEmail.textContent = user.email || '';
-
-                // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function getInitials(name) {
+                return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2) || 'U';
             }
 
             function handleUser(user) {
                 setSession(user);
                 showDashboard(user);
             }
+
+            // ============================================
+            // PASSWORD TOGGLE
+            // ============================================
+            window.togglePassword = function(inputId, btn) {
+                const input = document.getElementById(inputId);
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    btn.textContent = '🙈';
+                } else {
+                    input.type = 'password';
+                    btn.textContent = '👁️';
+                }
+            };
+
+            // ============================================
+            // TAB SWITCHING
+            // ============================================
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    authTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const target = this.dataset.tab;
+                    loginForm.classList.toggle('active', target === 'login');
+                    registerForm.classList.toggle('active', target === 'register');
+
+                    clearAuthMessage();
+                    clearErrors();
+
+                    // Update heading
+                    const heading = document.querySelector('.login-card h1');
+                    const subtitle = document.querySelector('.login-card .subtitle');
+                    if (target === 'login') {
+                        heading.textContent = 'Welcome Back';
+                        subtitle.textContent = 'Sign in to access your portfolio dashboard';
+                    } else {
+                        heading.textContent = 'Create Account';
+                        subtitle.textContent = 'Register to start building your portfolio';
+                    }
+                });
+            });
+
+            // ============================================
+            // VALIDATION HELPERS
+            // ============================================
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            function setError(group) {
+                group.classList.add('error');
+            }
+
+            // ============================================
+            // HANDLE LOGIN
+            // ============================================
+            window.handleLogin = function() {
+                clearErrors();
+                clearAuthMessage();
+
+                const email = loginEmail.value.trim();
+                const password = loginPassword.value;
+                let valid = true;
+
+                if (!email || !isValidEmail(email)) {
+                    setError(loginEmailGrp);
+                    valid = false;
+                }
+                if (!password || password.length < 6) {
+                    setError(loginPassGrp);
+                    valid = false;
+                }
+
+                if (!valid) return;
+
+                const users = getUsers();
+                const user = users.find(u => u.email === email && u.password === password);
+
+                if (user) {
+                    const sessionUser = {
+                        name: user.name,
+                        email: user.email,
+                        picture: null, // local users have no picture
+                        sub: 'local_' + user.email,
+                        authMethod: 'local'
+                    };
+                    handleUser(sessionUser);
+                } else {
+                    // Check if email exists at all
+                    const exists = users.find(u => u.email === email);
+                    if (exists) {
+                        showAuthMessage('Incorrect password. Please try again.', 'error');
+                        setError(loginPassGrp);
+                        loginPassGrp.querySelector('input').classList.add('shake');
+                        setTimeout(() => loginPassGrp.querySelector('input').classList.remove('shake'), 500);
+                    } else {
+                        showAuthMessage('No account found with this email. Please register.', 'error');
+                        setError(loginEmailGrp);
+                    }
+                }
+            };
+
+            // ============================================
+            // HANDLE REGISTER
+            // ============================================
+            window.handleRegister = function() {
+                clearErrors();
+                clearAuthMessage();
+
+                const name = regName.value.trim();
+                const email = regEmail.value.trim();
+                const password = regPassword.value;
+                const confirm = regConfirm.value;
+
+                let valid = true;
+
+                if (!name || name.length < 2) {
+                    setError(regNameGrp);
+                    valid = false;
+                }
+                if (!email || !isValidEmail(email)) {
+                    setError(regEmailGrp);
+                    valid = false;
+                }
+                if (!password || password.length < 6) {
+                    setError(regPassGrp);
+                    valid = false;
+                }
+                if (password !== confirm) {
+                    setError(regConfirmGrp);
+                    valid = false;
+                }
+
+                if (!valid) return;
+
+                const users = getUsers();
+
+                // Check duplicate email
+                if (users.find(u => u.email === email)) {
+                    showAuthMessage('An account with this email already exists. Please sign in.', 'error');
+                    setError(regEmailGrp);
+                    return;
+                }
+
+                // Save new user
+                users.push({ name, email, password });
+                saveUsers(users);
+
+                // Auto-login
+                const sessionUser = {
+                    name: name,
+                    email: email,
+                    picture: null,
+                    sub: 'local_' + email,
+                    authMethod: 'local'
+                };
+
+                showAuthMessage('Account created successfully! Redirecting...', 'success');
+                setTimeout(() => handleUser(sessionUser), 600);
+            };
 
             // ============================================
             // NAVBAR SCROLL EFFECT
@@ -1185,7 +1401,7 @@
             }, { passive: true });
 
             // ============================================
-            // GOOGLE SIGN-IN — UPDATED CLIENT ID
+            // GOOGLE SIGN-IN
             // ============================================
             let googleTokenClient = null;
             let isGoogleInitialized = false;
@@ -1195,14 +1411,14 @@
                 isGoogleInitialized = true;
 
                 googleTokenClient = google.accounts.oauth2.initTokenClient({
-                    client_id: 198968543643-n64ma87inkhui4p337i9c358m1l7600b.apps.googleusercontent.com,
+                    client_id: CLIENT_ID,
                     scope: 'email profile openid',
                     callback: function(response) {
                         if (response.error) {
                             console.error('Google Auth Error:', response.error);
+                            showAuthMessage('Google sign-in failed. Please try again.', 'error');
                             return;
                         }
-                        // Exchange token for user info
                         fetchUserInfo(response.access_token);
                     },
                 });
@@ -1222,20 +1438,19 @@
                         email: user.email,
                         picture: user.picture,
                         sub: user.sub,
+                        authMethod: 'google'
                     });
                 })
                 .catch(err => {
                     console.error('UserInfo Error:', err);
-                    alert('Failed to retrieve profile information. Please try again.');
+                    showAuthMessage('Failed to retrieve profile information.', 'error');
                 });
             }
 
-            // Click handler
             googleBtn.addEventListener('click', function() {
                 if (!googleTokenClient) {
                     initGoogleSignIn();
                 }
-                // Request token with user interaction
                 googleTokenClient.requestAccessToken({ prompt: 'select_account' });
             });
 
@@ -1244,16 +1459,27 @@
             // ============================================
             logoutBtn.addEventListener('click', function() {
                 clearSession();
-
-                // Revoke Google token if possible
-                try {
-                    const token = google.accounts.oauth2.revoke;
-                    if (token) {
-                        google.accounts.id.disableAutoSelect();
-                    }
-                } catch(e) { /* silent */ }
-
+                try { google.accounts.id.disableAutoSelect(); } catch(e) { /* silent */ }
+                // Clear form fields
+                loginEmail.value = '';
+                loginPassword.value = '';
+                regName.value = '';
+                regEmail.value = '';
+                regPassword.value = '';
+                regConfirm.value = '';
+                clearErrors();
+                clearAuthMessage();
                 showLoginPage();
+            });
+
+            // ============================================
+            // ENTER KEY SUPPORT
+            // ============================================
+            loginPassword.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') handleLogin();
+            });
+            regConfirm.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') handleRegister();
             });
 
             // ============================================
@@ -1266,20 +1492,19 @@
                 showLoginPage();
             }
 
-            // Load Google library async
+            // ============================================
+            // LOAD GOOGLE LIBRARY
+            // ============================================
             function onGoogleLibraryLoad() {
                 initGoogleSignIn();
             }
 
-            // If the library is already loaded
             if (typeof google !== 'undefined' && google.accounts) {
                 onGoogleLibraryLoad();
             } else {
-                // The GSI script has a callback mechanism
                 window.onGoogleLibraryLoad = onGoogleLibraryLoad;
             }
 
-            // Also try after a small delay if callback didn't fire
             setTimeout(function() {
                 if (typeof google !== 'undefined' && google.accounts && !isGoogleInitialized) {
                     onGoogleLibraryLoad();
@@ -1311,7 +1536,7 @@
             });
 
             // ============================================
-            // SMOOTH SCROLL FOR ANCHOR LINKS
+            // SMOOTH SCROLL
             // ============================================
             document.querySelectorAll('a[href^="#"]').forEach(link => {
                 link.addEventListener('click', function(e) {
