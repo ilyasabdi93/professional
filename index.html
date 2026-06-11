@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ilyas Abdi Ali | Web Development Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================
+           CSS VARIABLES & RESET
+        ============================================ */
+        :root {
+            --orange-primary: #FF6B00;
+            --orange-dark: #CC5500;
+            --orange-light: #FF8C33;
+            --black-primary: #0D0D0D;
+            --black-secondary: #1A1A1A;
+            --black-tertiary: #2A2A2A;
+            --glass-bg: rgba(255, 107, 0, 0.08);
+            --glass-border: rgba(255, 107, 0, 0.18);
+            --glass-shadow: rgba(0, 0, 0, 0.5);
+            --text-primary: #F5F5F5;
+            --text-secondary: #B0B0B0;
+            --text-muted: #6B6B6B;
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--black-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           SCROLLBAR
+        ============================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--black-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--orange-primary);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--orange-dark);
+        }
+
+        /* ============================================
+           GLASSMORPHISM UTILITY
+        ============================================ */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px) saturate(1.4);
+            -webkit-backdrop-filter: blur(18px) saturate(1.4);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px var(--glass-shadow);
+        }
+
+        /* ============================================
+           ANIMATIONS
+        ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 107, 0, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 107, 0, 0.5);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.7s ease forwards;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.5s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* ============================================
+           PAGE SECTIONS
+        ============================================ */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .page.active {
+            display: block;
+        }
+
+        /* ============================================
+           LOGIN PAGE
+        ============================================ */
+        #loginPage {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--black-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #loginPage .bg-orbs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        #loginPage .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+        }
+
+        #loginPage .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--orange-primary);
+            top: -10%;
+            left: -5%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        #loginPage .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: var(--orange-dark);
+            bottom: -10%;
+            right: -5%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        #loginPage .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--orange-light);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 440px;
+            padding: 20px;
+        }
+
+        .login-card {
+            padding: 48px 40px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            animation: scaleIn 0.6s ease;
+        }
+
+        .login-card .logo-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .login-card h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .login-card .subtitle {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .login-card .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            color: var(--text-muted);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-card .divider::before,
+        .login-card .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        /* Google Sign-In Button */
+        .g-sign-in-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            padding: 16px 24px;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 500;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .g-sign-in-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 107, 0, 0.08));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .g-sign-in-btn:hover::before {
+            opacity: 1;
+        }
+
+        .g-sign-in-btn:hover {
+            border-color: var(--orange-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.15);
+        }
+
+        .g-sign-in-btn:active {
+            transform: translateY(0);
+        }
+
+        .g-sign-in-btn svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .login-card .footer-text {
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .login-card .footer-text span {
+            color: var(--orange-primary);
+        }
+
+        /* ============================================
+           DASHBOARD / PORTFOLIO PAGE
+        ============================================ */
+        #dashboardPage {
+            min-height: 100vh;
+            background: var(--black-primary);
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(20px) saturate(1.6);
+            -webkit-backdrop-filter: blur(20px) saturate(1.6);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 10px 32px;
+        }
+
+        .navbar .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .navbar .brand .brand-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--orange-primary);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .navbar .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 6px 14px 6px 6px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+        }
+
+        .navbar .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--orange-primary);
+        }
+
+        .navbar .user-details {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.3;
+        }
+
+        .navbar .user-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .navbar .user-email {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .logout-btn {
+            padding: 8px 18px;
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            border-radius: 50px;
+            background: transparent;
+            color: var(--orange-primary);
+            font-size: 13px;
+            font-weight: 500;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 107, 0, 0.12);
+            border-color: var(--orange-primary);
+            transform: translateY(-1px);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 32px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-orbs {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .hero-bg-orbs .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.1;
+        }
+
+        .hero-bg-orbs .orb-a {
+            width: 500px;
+            height: 500px;
+            background: var(--orange-primary);
+            top: -20%;
+            right: -10%;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .hero-bg-orbs .orb-b {
+            width: 400px;
+            height: 400px;
+            background: var(--orange-dark);
+            bottom: -15%;
+            left: -8%;
+            animation: float 14s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid rgba(255, 107, 0, 0.2);
+            font-size: 13px;
+            color: var(--orange-light);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero-badge .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--orange-primary);
+            border-radius: 50%;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 7vw, 72px);
+            font-weight: 800;
+            line-height: 1.08;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.7s ease 0.1s both;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 36px;
+            animation: fadeInUp 0.7s ease 0.2s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.7s ease 0.3s both;
+        }
+
+        .btn-primary {
+            padding: 16px 36px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--orange-primary), var(--orange-dark));
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 107, 0, 0.3);
+        }
+
+        .btn-secondary {
+            padding: 16px 36px;
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 500;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--orange-primary);
+            background: rgba(255, 107, 0, 0.06);
+            transform: translateY(-3px);
+        }
+
+        /* --- About / Services Section --- */
+        .section {
+            padding: 100px 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--orange-primary);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(30px, 4vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 48px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            padding: 36px 28px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.02);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--orange-primary), transparent);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            border-color: rgba(255, 107, 0, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(255, 107, 0, 0.06);
+        }
+
+        .service-card .icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* --- Skills --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            padding: 10px 22px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .skill-tag:hover {
+            border-color: var(--orange-primary);
+            color: var(--orange-primary);
+            background: rgba(255, 107, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        /* --- Featured Work --- */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .work-card {
+            border-radius: var(--radius-md);
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .work-card:hover {
+            border-color: rgba(255, 107, 0, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(255, 107, 0, 0.06);
+        }
+
+        .work-card .work-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--black-tertiary), var(--black-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .work-card .work-body {
+            padding: 24px;
+        }
+
+        .work-card .work-body h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .work-card .work-body p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .work-card .work-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .work-card .work-tags span {
+            padding: 4px 12px;
+            border-radius: 50px;
+            background: rgba(255, 107, 0, 0.08);
+            color: var(--orange-light);
+            font-size: 12px;
+        }
+
+        /* --- Contact / Footer --- */
+        .contact-card {
+            padding: 48px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.02);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-card h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-links a:hover {
+            border-color: var(--orange-primary);
+            color: var(--orange-primary);
+            background: rgba(255, 107, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer span {
+            color: var(--orange-primary);
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 16px;
+            }
+            .navbar.scrolled {
+                padding: 8px 16px;
+            }
+            .navbar .user-details {
+                display: none;
+            }
+            .navbar .user-info {
+                padding: 4px 4px 4px 4px;
+                gap: 8px;
+            }
+            .logout-btn {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+
+            .login-card {
+                padding: 32px 24px;
+            }
+
+            .hero {
+                padding: 100px 16px 60px;
+            }
+
+            .section {
+                padding: 60px 16px;
+            }
+
+            .contact-card {
+                padding: 32px 20px;
+            }
+
+            .services-grid,
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .brand {
+                font-size: 16px;
+            }
+            .navbar .brand .brand-dot {
+                width: 8px;
+                height: 8px;
+            }
+            .g-sign-in-btn {
+                font-size: 14px;
+                padding: 14px 18px;
+            }
+            .btn-primary,
+            .btn-secondary {
+                padding: 14px 24px;
+                font-size: 14px;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+    LOGIN PAGE
+    ============================================ -->
+    <div id="loginPage" class="page active">
+        <div class="bg-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+        <div class="login-container">
+            <div class="login-card glass">
+                <span class="logo-icon">🖥️</span>
+                <h1>Welcome Back</h1>
+                <p class="subtitle">Sign in to access your portfolio dashboard</p>
+
+                <div class="divider">Authenticate</div>
+
+                <!-- Google Sign-In Button -->
+                <button id="googleSignInBtn" class="g-sign-in-btn">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Sign in with Google
+                </button>
+
+                <p class="footer-text">Secured by <span>Google OAuth 2.0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+    DASHBOARD / PORTFOLIO PAGE
+    ============================================ -->
+    <div id="dashboardPage" class="page">
+
+        <!-- Navbar -->
+        <nav class="navbar" id="navbar">
+            <a href="#" class="brand">
+                <span class="brand-dot"></span>
+                Ilyas Abdi Ali
+            </a>
+            <div class="nav-right">
+                <div class="user-info" id="userInfo">
+                    <img id="userAvatar" class="user-avatar" src="" alt="Avatar" />
+                    <div class="user-details">
+                        <span class="user-name" id="userName">User</span>
+                        <span class="user-email" id="userEmail">user@email.com</span>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">Sign Out</button>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero" id="hero">
+            <div class="hero-bg-orbs">
+                <div class="orb orb-a"></div>
+                <div class="orb orb-b"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Web Development Designer
+                </div>
+                <h1>
+                    Crafting <span class="highlight">Digital Experiences</span><br />
+                    That Matter
+                </h1>
+                <p>
+                    Hi, I'm <strong>Ilyas Abdi Ali</strong> — a professional web development designer
+                    specializing in modern, responsive, and secure web applications.
+                    Let's build something extraordinary together.
+                </p>
+                <div class="hero-cta">
+                    <a href="#work" class="btn-primary">
+                        View My Work ↓
+                    </a>
+                    <a href="#contact" class="btn-secondary">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="section" id="services">
+            <span class="section-label animate-fade-in-up">What I Do</span>
+            <h2 class="section-title animate-fade-in-up delay-1">Services &amp; Expertise</h2>
+            <p class="section-desc animate-fade-in-up delay-2">
+                From concept to deployment, I deliver full-stack web solutions
+                with a focus on design, performance, and security.
+            </p>
+            <div class="services-grid">
+                <div class="service-card animate-fade-in-up delay-1">
+                    <span class="icon">🎨</span>
+                    <h3>UI/UX Design</h3>
+                    <p>Beautiful, intuitive interfaces with modern design patterns and glassmorphism aesthetics.</p>
+                </div>
+                <div class="service-card animate-fade-in-up delay-2">
+                    <span class="icon">⚡</span>
+                    <h3>Frontend Development</h3>
+                    <p>Responsive, animated, and accessible React/Vue/vanilla JS applications.</p>
+                </div>
+                <div class="service-card animate-fade-in-up delay-3">
+                    <span class="icon">🔒</span>
+                    <h3>Secure Auth &amp; Backend</h3>
+                    <p>OAuth 2.0, JWT, session management — enterprise-grade authentication flows.</p>
+                </div>
+                <div class="service-card animate-fade-in-up delay-4">
+                    <span class="icon">📱</span>
+                    <h3>Mobile-First Design</h3>
+                    <p>Pixel-perfect responsive layouts that shine on every device.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section" id="skills">
+            <span class="section-label animate-fade-in-up">Tech Stack</span>
+            <h2 class="section-title animate-fade-in-up delay-1">Tools &amp; Technologies</h2>
+            <p class="section-desc animate-fade-in-up delay-2">
+                Always learning, always building — here's my current toolkit.
+            </p>
+            <div class="skills-container animate-fade-in-up delay-3">
+                <span class="skill-tag">HTML5 / CSS3</span>
+                <span class="skill-tag">JavaScript (ES6+)</span>
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">Vue.js</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Express</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">Google OAuth 2.0</span>
+                <span class="skill-tag">JWT</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">GraphQL</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Git / GitHub</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">Tailwind CSS</span>
+            </div>
+        </section>
+
+        <!-- Featured Work -->
+        <section class="section" id="work">
+            <span class="section-label animate-fade-in-up">Portfolio</span>
+            <h2 class="section-title animate-fade-in-up delay-1">Featured Projects</h2>
+            <p class="section-desc animate-fade-in-up delay-2">
+                A selection of recent work showcasing design, engineering, and attention to detail.
+            </p>
+            <div class="work-grid">
+                <div class="work-card animate-fade-in-up delay-1">
+                    <div class="work-img">🛒</div>
+                    <div class="work-body">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Full-stack store with Google Auth, cart, payments, and admin dashboard.</p>
+                        <div class="work-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>Stripe</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-card animate-fade-in-up delay-2">
+                    <div class="work-img">📊</div>
+                    <div class="work-body">
+                        <h3>Analytics Dashboard</h3>
+                        <p>Real-time data visualization with OAuth-secured multi-tenant access.</p>
+                        <div class="work-tags">
+                            <span>Vue.js</span>
+                            <span>D3.js</span>
+                            <span>Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-card animate-fade-in-up delay-3">
+                    <div class="work-img">🏥</div>
+                    <div class="work-body">
+                        <h3>HealthTech Portal</h3>
+                        <p>HIPAA-compliant patient portal with secure authentication and role management.</p>
+                        <div class="work-tags">
+                            <span>Next.js</span>
+                            <span>PostgreSQL</span>
+                            <span>OAuth 2.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section" id="contact">
+            <div class="contact-card animate-scale-in">
+                <h2>Let's Work Together</h2>
+                <p>Have a project in mind? Reach out and let's make it happen.</p>
+                <div class="contact-links">
+                    <a href="mailto:ilyas@example.com">✉️ ilyas@example.com</a>
+                    <a href="#">🔗 GitHub</a>
+                    <a href="#">💼 LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            &copy; <span id="year"></span> Ilyas Abdi Ali — Web Development Designer. All rights reserved.
+        </footer>
+    </div>
+
+    <!-- ============================================
+    GOOGLE CLIENT LIBRARY
+    ============================================ -->
+    <script src="https://accounts.google.com/gsi/client"></script>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================
+            // CONFIGURATION
+            // ============================================
+            const CLIENT_ID = '1076286184823-9p8gq0priirhctrpj0ioja30o7i3vjk8.apps.googleusercontent.com';
+            const SESSION_KEY = 'hackerai_google_session';
+
+            // ============================================
+            // DOM REFS
+            // ============================================
+            const loginPage      = document.getElementById('loginPage');
+            const dashboardPage  = document.getElementById('dashboardPage');
+            const googleBtn      = document.getElementById('googleSignInBtn');
+            const logoutBtn      = document.getElementById('logoutBtn');
+            const userAvatar     = document.getElementById('userAvatar');
+            const userName       = document.getElementById('userName');
+            const userEmail      = document.getElementById('userEmail');
+            const navbar         = document.getElementById('navbar');
+            const yearSpan       = document.getElementById('year');
+
+            // ============================================
+            // FOOTER YEAR
+            // ============================================
+            yearSpan.textContent = new Date().getFullYear();
+
+            // ============================================
+            // SESSION PERSISTENCE
+            // ============================================
+            function getSession() {
+                try {
+                    const data = localStorage.getItem(SESSION_KEY);
+                    return data ? JSON.parse(data) : null;
+                } catch { return null; }
+            }
+
+            function setSession(user) {
+                localStorage.setItem(SESSION_KEY, JSON.stringify(user));
+            }
+
+            function clearSession() {
+                localStorage.removeItem(SESSION_KEY);
+            }
+
+            // ============================================
+            // UI HELPERS
+            // ============================================
+            function showLoginPage() {
+                loginPage.classList.add('active');
+                dashboardPage.classList.remove('active');
+                document.title = 'Sign In | Ilyas Abdi Ali';
+            }
+
+            function showDashboard(user) {
+                loginPage.classList.remove('active');
+                dashboardPage.classList.add('active');
+                document.title = 'Dashboard | Ilyas Abdi Ali';
+
+                // Populate navbar
+                userAvatar.src = user.picture || '';
+                userAvatar.alt = user.name || 'User';
+                userName.textContent = user.name || 'User';
+                userEmail.textContent = user.email || '';
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function handleUser(user) {
+                setSession(user);
+                showDashboard(user);
+            }
+
+            // ============================================
+            // NAVBAR SCROLL EFFECT
+            // ============================================
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
+                scrollTimeout = requestAnimationFrame(function() {
+                    navbar.classList.toggle('scrolled', window.scrollY > 40);
+                });
+            }, { passive: true });
+
+            // ============================================
+            // GOOGLE SIGN-IN
+            // ============================================
+            let googleTokenClient = null;
+            let isGoogleInitialized = false;
+
+            function initGoogleSignIn() {
+                if (isGoogleInitialized) return;
+                isGoogleInitialized = true;
+
+                googleTokenClient = google.accounts.oauth2.initTokenClient({
+                    client_id: 1076286184823-9p8gq0priirhctrpj0ioja30o7i3vjk8.apps.googleusercontent.com,
+                    scope: 'email profile openid',
+                    callback: function(response) {
+                        if (response.error) {
+                            console.error('Google Auth Error:', response.error);
+                            return;
+                        }
+                        // Exchange token for user info
+                        fetchUserInfo(response.access_token);
+                    },
+                });
+            }
+
+            function fetchUserInfo(accessToken) {
+                fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                    headers: { 'Authorization': `Bearer ${accessToken}` }
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error('Failed to fetch user info');
+                    return res.json();
+                })
+                .then(user => {
+                    handleUser({
+                        name: user.name,
+                        email: user.email,
+                        picture: user.picture,
+                        sub: user.sub,
+                    });
+                })
+                .catch(err => {
+                    console.error('UserInfo Error:', err);
+                    alert('Failed to retrieve profile information. Please try again.');
+                });
+            }
+
+            // Click handler
+            googleBtn.addEventListener('click', function() {
+                if (!googleTokenClient) {
+                    initGoogleSignIn();
+                }
+                // Request token with user interaction
+                googleTokenClient.requestAccessToken({ prompt: 'select_account' });
+            });
+
+            // ============================================
+            // LOGOUT
+            // ============================================
+            logoutBtn.addEventListener('click', function() {
+                clearSession();
+
+                // Revoke Google token if possible
+                try {
+                    const token = google.accounts.oauth2.revoke;
+                    if (token) {
+                        // We don't have the token stored, but the library handles it
+                        google.accounts.id.disableAutoSelect();
+                    }
+                } catch(e) { /* silent */ }
+
+                showLoginPage();
+            });
+
+            // ============================================
+            // INIT — CHECK SESSION
+            // ============================================
+            const savedSession = getSession();
+            if (savedSession && savedSession.name && savedSession.email) {
+                showDashboard(savedSession);
+            } else {
+                showLoginPage();
+            }
+
+            // Load Google library async
+            function onGoogleLibraryLoad() {
+                initGoogleSignIn();
+            }
+
+            // If the library is already loaded
+            if (typeof google !== 'undefined' && google.accounts) {
+                onGoogleLibraryLoad();
+            } else {
+                // The GSI script has a callback mechanism
+                window.onGoogleLibraryLoad = onGoogleLibraryLoad;
+            }
+
+            // Also try after a small delay if callback didn't fire
+            setTimeout(function() {
+                if (typeof google !== 'undefined' && google.accounts && !isGoogleInitialized) {
+                    onGoogleLibraryLoad();
+                }
+            }, 2000);
+
+            // ============================================
+            // INTERSECTION OBSERVER — ANIMATIONS
+            // ============================================
+            const animObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.visibility = 'visible';
+                        // Re-trigger animation by toggling a class
+                        const cls = entry.target.dataset.anim || 'animate-fade-in-up';
+                        entry.target.classList.add(cls);
+                        animObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all elements with animation classes in dashboard
+            document.querySelectorAll('#dashboardPage .animate-fade-in-up, #dashboardPage .animate-scale-in').forEach(el => {
+                // Store the animation class and reset
+                const animClass = Array.from(el.classList).find(c => c.startsWith('animate-'));
+                if (animClass) {
+                    el.dataset.anim = animClass;
+                    el.classList.remove(animClass);
+                    el.style.visibility = 'hidden';
+                    animObserver.observe(el);
+                }
+            });
+
+            // ============================================
+            // SMOOTH SCROLL FOR ANCHOR LINKS
+            // ============================================
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+        })();
+    </script>
+</body>
+  </html>
