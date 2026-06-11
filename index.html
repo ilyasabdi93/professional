@@ -1171,13 +1171,14 @@
         onAuthStateChanged(auth, (user) => {
             loading.classList.add('hidden');
             if (user) {
+                console.log('User logged in');
                 showPage(portPage);
-                if (user.photoURL) {
-                    $('userAvatar').src = user.photoURL;
-                    $('userAvatar').style.display = 'block';
-                    $('userInit').style.display = 'none';
-                } else {
-                    $('userAvatar').style.display = 'none';
+    } else {
+        console.log('No user');
+        showPage(authPage);
+    }
+  });
+                  $('userAvatar').style.display = 'none';
                     $('userInit').style.display = 'flex';
                     $('userInit').textContent = (user.displayName || 'U').split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2) || 'U';
                 }
